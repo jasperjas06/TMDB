@@ -34,6 +34,13 @@ import NucleoIcons from "views/IndexSections/NucleoIcons.js";
 import Signup from "views/IndexSections/Signup.js";
 import Examples from "views/IndexSections/Examples.js";
 import Download from "views/IndexSections/Download.js";
+import Trending from "./page/Trending";
+import AutoPlayer from "components/Body/AutoPlayer";
+import OnTv from "./page/OnTv";
+import Tablet from "components/Body/Tablet";
+import { Container } from "@mui/material";
+import Geners from "./page/Geners";
+import { CNav } from "@coreui/react";
 
 export default function Index() {
   React.useEffect(() => {
@@ -47,9 +54,15 @@ export default function Index() {
     <>
       <IndexNavbar />
       <div className="wrapper">
-        <PageHeader />
+        {/* <PageHeader /> */}
         <div className="main">
-          <Basics />
+          
+          <Trending />
+          <Tablet/>
+          <Geners/>
+          {/* <JavaScript /> */}
+          {/* <OnTv /> */}
+          {/* <Basics />
           <Navbars />
           <Tabs />
           <Pagination />
@@ -59,9 +72,9 @@ export default function Index() {
           <NucleoIcons />
           <Signup />
           <Examples />
-          <Download />
+          <Download /> */}
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );

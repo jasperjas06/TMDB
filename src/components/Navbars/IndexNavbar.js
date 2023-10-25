@@ -79,8 +79,8 @@ export default function IndexNavbar() {
       <Container>
         <div className="navbar-translate">
           <NavbarBrand to="/" tag={Link} id="navbar-brand">
-            <span>BLK• </span>
-            Design System React
+            <span>BOOK• </span>
+            Mark
           </NavbarBrand>
           <UncontrolledTooltip placement="bottom" target="navbar-brand">
             Designed and Coded by Creative Tim
@@ -157,7 +157,19 @@ export default function IndexNavbar() {
                 <p className="d-lg-none d-xl-none">Instagram</p>
               </NavLink>
             </NavItem>
-            <UncontrolledDropdown nav>
+            <NavItem>
+              <NavLink
+                data-placement="bottom"
+                href="/profile-page"
+                rel="noopener noreferrer"
+                // target="_blank"
+                title="Profile"
+              >
+                <i className="tim-icons icon-single-02" />
+                {/* <p className="d-lg-none d-xl-none">Instagram</p> */}
+              </NavLink>
+            </NavItem>
+            {/* <UncontrolledDropdown nav>
               <DropdownToggle
                 caret
                 color="default"
@@ -187,8 +199,8 @@ export default function IndexNavbar() {
                   Profile Page
                 </DropdownItem>
               </DropdownMenu>
-            </UncontrolledDropdown>
-            <NavItem>
+            </UncontrolledDropdown> */}
+            {/* <NavItem>
               <Button
                 className="nav-link d-none d-lg-block"
                 color="primary"
@@ -197,8 +209,8 @@ export default function IndexNavbar() {
               >
                 <i className="tim-icons icon-spaceship" /> Upgrade to PRO
               </Button>
-            </NavItem>
-            <NavItem>
+            </NavItem> */}
+            {/* <NavItem>
               <Button
                 className="nav-link d-none d-lg-block"
                 color="default"
@@ -206,7 +218,7 @@ export default function IndexNavbar() {
               >
                 <i className="tim-icons icon-cloud-download-93" /> Download
               </Button>
-            </NavItem>
+            </NavItem> */}
           </Nav>
         </Collapse>
       </Container>

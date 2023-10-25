@@ -1,0 +1,39 @@
+.auto_main {
+    /* margin-top: 10px; */
+    /* height: 80vh;
+    background-color: brown; */
+}
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  .video-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+  }
+  
+  .video-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
+
+  .sub_box {
+    background-color: rgba(1, 4, 44, 0.303);
+    height: 100%;
+    width: 100%;
+    z-index: inherit;
+  }
+
+  .genres {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto ;
+    grid-gap: 10px;
+    margin-top: 50px;
+  }
+  

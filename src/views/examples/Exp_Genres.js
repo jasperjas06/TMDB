@@ -40,7 +40,7 @@ import Footer from "components/Footer/Footer.js";
 import bigChartData from "variables/charts.js";
 import IndexNavbar from "components/Navbars/IndexNavbar";
 
-export default function LandingPage() {
+export default function ExpGengres() {
   React.useEffect(() => {
     document.body.classList.toggle("landing-page");
     // Specify how to clean up after this effect:
@@ -84,71 +84,10 @@ export default function LandingPage() {
             src={require("assets/img/cercuri.png")}
           />
           <div className="content-center">
-            <Row className="row-grid justify-content-between align-items-center text-left">
-              {/* <Col lg="6" md="6">
-                <h1 className="text-white">
-                  We keep your coin <br />
-                  <span className="text-white">secured</span>
-                </h1>
-                <p className="text-white mb-3">
-                  A wonderful serenity has taken possession of my entire soul,
-                  like these sweet mornings of spring which I enjoy with my
-                  whole heart. I am alone, and feel...
-                </p>
-                <div className="btn-wrapper mb-3">
-                  <p className="category text-success d-inline">
-                    From 9.99%/mo
-                  </p>
-                  <Button
-                    className="btn-link"
-                    color="success"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                    size="sm"
-                  >
-                    <i className="tim-icons icon-minimal-right" />
-                  </Button>
-                </div>
-                <div className="btn-wrapper">
-                  <div className="button-container">
-                    <Button
-                      className="btn-icon btn-simple btn-round btn-neutral"
-                      color="default"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      <i className="fab fa-twitter" />
-                    </Button>
-                    <Button
-                      className="btn-icon btn-simple btn-round btn-neutral"
-                      color="default"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      <i className="fab fa-dribbble" />
-                    </Button>
-                    <Button
-                      className="btn-icon btn-simple btn-round btn-neutral"
-                      color="default"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      <i className="fab fa-facebook" />
-                    </Button>
-                  </div>
-                </div>
-              </Col> */}
-              {/* <Col lg="4" md="5">
-                <img
-                  alt="..."
-                  className="img-fluid"
-                  src={require("assets/img/etherum.png")}
-                />
-              </Col> */}
-            </Row>
+              
           </div>
         </div>
-        <section className="section section-lg">
+        {/* <section className="section section-lg">
           <section className="section">
             <img
               alt="..."
@@ -274,8 +213,8 @@ export default function LandingPage() {
               </Row>
             </Container>
           </section>
-        </section>
-        <section className="section section-lg">
+        </section> */}
+        {/* <section className="section section-lg">
           <img
             alt="..."
             className="path"
@@ -342,8 +281,8 @@ export default function LandingPage() {
               </Col>
             </Row>
           </Container>
-        </section>
-        <section className="section section-lg section-safe">
+        </section> */}
+        {/* <section className="section section-lg section-safe">
           <img
             alt="..."
             className="path"
@@ -435,8 +374,8 @@ export default function LandingPage() {
               </Col>
             </Row>
           </Container>
-        </section>
-        <section className="section section-lg">
+        </section> */}
+        {/* <section className="section section-lg">
           <img
             alt="..."
             className="path"
@@ -584,7 +523,7 @@ export default function LandingPage() {
               </Col>
             </Row>
           </Container>
-        </section>
+        </section> */}
         <Footer />
       </div>
     </>

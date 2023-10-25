@@ -1,0 +1,63 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+    width: 100%;
+    // height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    margin-top: 450px;
+  }
+  
+  ul{
+    display: flex;
+    flex-direction: row;
+    // align-items: center;
+    list-style: none;
+    max-width: 100%;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    &::-webkit-scrollbar {
+      background: transparent; /* make scrollbar transparent */
+      -webkit-appearance: none;
+      width: 0;
+      height: 0;
+    }
+    li{
+      background:#FF61F6;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      margin: 0 4px;
+      white-space: nowrap;
+    }
+  }
+  
+  button{
+    border: 0;
+    color: #777;
+    font-size: 24px;
+    margin: 0 8px;
+  }
+  .slider {
+    padding: 6px;
+    transition: 0.5s all ease-in-out;
+  }
+  .slider:hover {
+    transform: scale(1.05);
+  }
+
+  .App_2 {
+    font-family: sans-serif;
+    text-align: center;
+    width: 100%;
+    // height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    // margin-top: 450px;
+  }
+
+  
