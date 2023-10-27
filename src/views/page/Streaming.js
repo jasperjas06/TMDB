@@ -3,12 +3,13 @@ import gsap from "gsap";
 import React, { useRef, useState } from "react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import CustomModal from "components/Body/CustomModal";
 
 const Streaming = () => {
 
   const [data, setData] = useState([]);
-  // const [bgdata,setBgdata] = useState({})
-  // const [id,setId]=useState("")
+  const [open,setOpen] = useState(false)
+  const [newData,setNewData]=useState({})
   // const [you_id,setYou_id] = useState("")
   let scrl = useRef(null);
   const [scrollX, setscrollX] = useState(0);
@@ -70,15 +71,18 @@ const Streaming = () => {
     setData(response.results)
     )
     .catch((err) => console.error(err));
-  return(
+
+    const handleOpen = ({item}) =>{
+      // console.log(item,"handleOpen");
+      if(item){
+        setOpen(true)
+        setNewData(item)
+      }
+    }
+
+  return(<>
     <div className="section" >
-    {/* <Container>
-        <h2 className="title">Populor on TV</h2>
-    </Container> */}
           <div >
-            {/* <Container className="column">
-              <h3 style={{color:"black"}}>hi</h3>
-            </Container> */}
       <div className="App_2">
         {scrollX !== 0 && (
           <IconButton
@@ -93,7 +97,7 @@ const Streaming = () => {
         <ul ref={scrl} onScroll={scrollCheck}>
           {data.map((item, index) => {
             return (
-              <div className="slider" key={item.id} >
+              <div className="slider" key={item.id} onClick={()=>handleOpen({item})}>
                 <Card sx={{ height: "100%", maxWidth: "200px" }}>
                   <CardMedia
                     sx={{ height: 290, width: "200px" }}
@@ -117,6 +121,8 @@ const Streaming = () => {
       </div>
       </div>
     </div>
+    {open && <CustomModal open={open} setOpen={setOpen} data={newData} tv={true}/>}
+    </>
   );
 };
 

@@ -96,7 +96,8 @@
   }
 
   &.bg-primary {
-    background-color: $primary !important;
+    // background-color: $primary !important;
+    background-color: $black !important;
   }
 
   &.bg-warning {

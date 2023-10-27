@@ -385,6 +385,7 @@
 
 .section-pagination {
   padding-bottom: 0;
+  z-index: ;
 }
 
 .section-pagination .pagination:last-of-type {
