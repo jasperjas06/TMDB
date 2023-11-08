@@ -1,6 +1,6 @@
 import { Card, CardMedia, Container, IconButton } from "@mui/material";
 import gsap from "gsap";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import CustomModal from "components/Body/CustomModal";
@@ -73,16 +73,19 @@ const Streaming = () => {
     .catch((err) => console.error(err));
 
     const handleOpen = ({item}) =>{
-      // console.log(item,"handleOpen");
+      console.log(item,"handleOpen");
       if(item){
         setOpen(true)
         setNewData(item)
       }
     }
+    useEffect(()=>{
+
+    },[open,newData])
 
   return(<>
     <div className="section" >
-          <div >
+          
       <div className="App_2">
         {scrollX !== 0 && (
           <IconButton
@@ -97,14 +100,7 @@ const Streaming = () => {
         <ul ref={scrl} onScroll={scrollCheck}>
           {data.map((item, index) => {
             return (
-              <div className="slider" key={item.id} onClick={()=>handleOpen({item})}>
-                <Card sx={{ height: "100%", maxWidth: "200px" }}>
-                  <CardMedia
-                    sx={{ height: 290, width: "200px" }}
-                    image={`http://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                  />
-                </Card>
-              </div>
+              <img className="slider" style={{maxWidth:"250px", padding:"10px"}} src={`http://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.name} key={item.id} onClick={()=>handleOpen({item})}/>
             );
           })}
         </ul>
@@ -119,7 +115,7 @@ const Streaming = () => {
           </IconButton>
         )}
       </div>
-      </div>
+      
     </div>
     {open && <CustomModal open={open} setOpen={setOpen} data={newData} tv={true}/>}
     </>
