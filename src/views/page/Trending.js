@@ -119,14 +119,15 @@ function Trending(props) {
         <ul ref={scrl} onScroll={scrollCheck}>
           {data.map((item, index) => {
             return (
-              <div className="slider" key={item.id} onClick={()=>handlesend(item)}>
-                <Card sx={{ height: "100%", maxWidth: "200px" }}>
-                  <CardMedia
-                    sx={{ height: 270, width: "200px" }}
-                    image={`http://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                  />
-                </Card>
-              </div>
+              // <div >
+              <img className="slider" style={{maxWidth:"250px", padding:"10px"}} src={`http://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.name} key={item.id} onClick={()=>handlesend(item)}/>
+                // <Card sx={{ height: "100%", maxWidth: "500px" }} className="slider" >
+                //   <CardMedia
+                //     sx={{ height: 270, width: "200px" }}
+                //     image={`http://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                //   />
+                // </Card>
+              // </div>
             );
           })}
         </ul>
