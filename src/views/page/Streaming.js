@@ -4,16 +4,20 @@ import React, { useEffect, useRef, useState } from "react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import CustomModal from "components/Body/CustomModal";
+import {useParams,generatePath, useNavigate} from "react-router-dom"
 
 const Streaming = () => {
-
   const [data, setData] = useState([]);
   const [open,setOpen] = useState(false)
   const [newData,setNewData]=useState({})
+  // const [name, setName] = useState("")
   // const [you_id,setYou_id] = useState("")
+  const navigate = useNavigate();
   let scrl = useRef(null);
   const [scrollX, setscrollX] = useState(0);
   const [scrolEnd, setscrolEnd] = useState(false);
+  // const history = useHistory()
+  // const {name} = useParams()
 
   const slide = (shift) => {
     scrl.current.scrollLeft += shift;
@@ -75,9 +79,12 @@ const Streaming = () => {
     const handleOpen = ({item}) =>{
       console.log(item,"handleOpen");
       if(item){
-        setOpen(true)
+        // setName(item?.name)
+        // setOpen(true)
         setNewData(item)
+        navigate(`/view-page/${item?.id}/${item.name}`)
       }
+      // name && history.push(generatePath("/view/:name"),{name})
     }
     useEffect(()=>{
 

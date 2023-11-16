@@ -96,8 +96,11 @@ const CustomModal = ({ open, setOpen, data, tv }) => {
           {/* <CloseIcon /> */}
         </IconButton>
         {/* <Navbars/> */}
+        <Container>
+          <h1>hello</h1>
+        </Container>
 
-        <div style={{ marginTop: "15px" }}>
+        {/* <div style={{ marginTop: "15px" }}>
           <div style={style}>
             <div className="inner_div">
               
@@ -192,7 +195,7 @@ const CustomModal = ({ open, setOpen, data, tv }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </Dialog>
     </div>
   );

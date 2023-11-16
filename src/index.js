@@ -32,6 +32,8 @@ import RegisterPage from "views/examples/RegisterPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
 import LoginPage from "views/examples/LoginPage";
 import ExpGengres from "views/examples/Exp_Genres";
+import OverView from "views/page/OverView";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // dotenv.config({path:''})
@@ -46,7 +48,9 @@ root.render(
       <Route path="/register-page" element={<RegisterPage />} />
       <Route path="/login-page" element={<LoginPage />} />
       <Route path="/profile-page" element={<ProfilePage />} />
-      <Route path="*" element={<Navigate to="/landing-page" replace />} />
+      <Route path="/view-page/:id/:name" element={<OverView />} />
+      {/* <Route path="/view-page" element={OverView}/> */}
+      <Route path="*" element={<Navigate to="/home-page" replace />} />
     </Routes>
   </BrowserRouter>
 );
