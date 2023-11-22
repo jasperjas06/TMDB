@@ -145,13 +145,38 @@ h3 {
 
 .slider {
   height: 100%;
-  width: 250px;
-  -webkit-transition: all 2s ease;
-  -moz-transition: all 2s ease;
-  -ms-transition: all 2s ease;
-  transition: all 2s ease;
+  width: 270px;
+  /* -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease; */
 }
 .slider:hover {
-  width: 300px;
+  width: 290px;
   height: 100%;
+}
+
+.over-black {
+  background-color: rgba(0, 0, 0, 0.605);
+  height: 70vh;
+  width: 100%;
+}
+
+.grid-poster {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.grid-poster img {
+  width: 300px;
+  padding: 20px;
+  margin-top: 20px;
+}
+@media screen and (max-width: 650px) {
+  .grid-poster {
+    display: flex;
+    flex-direction: column;
+  }
+  .grid-poster img {
+    display: none;
+  }
 }
