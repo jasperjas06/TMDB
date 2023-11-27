@@ -10,6 +10,7 @@ const OverView = () => {
     const [tv, setTv] = React.useState([])
     const [img, setImg] = React.useState("")
     const [poster,setPoster] = React.useState("")
+    const [cast,setCast] = React.useState([])
     const navigate = useNavigate()
     const options = {
         method: "GET",
@@ -29,7 +30,13 @@ const OverView = () => {
             .then((response) => setTv(response))
             .catch((err) => console.error(err));
 
-
+            fetch(
+                `https://api.themoviedb.org/3/tv/${id}/credits?language=en-US`,
+                options
+              )
+                .then((response) => response.json())
+                .then((response) => setCast(response.cast))
+                .catch((err) => console.error(err));
         if (tv) {
             setImg(`https://image.tmdb.org/t/p/original${tv?.backdrop_path}`)
             setPoster(`http://image.tmdb.org/t/p/w500/${tv?.poster_path}`)
@@ -49,6 +56,7 @@ const OverView = () => {
 
     React.useEffect(() => {
         getData()
+        // console.log(tv,"cast");
     }, [tv])
     return (
         <div>
@@ -63,28 +71,57 @@ const OverView = () => {
                                 <h1 className="text-white" style={{ fontWeight: "600", marginTop: "4rem" }}>
                                     {tv?.name} <br />
                                 </h1>
-                                <Box style={{ display: "flex", flexDirection: "row" }}>
+                                <div style={{ display: "flex", flexDirection: "row" }}>
                                 {tv.genres?.map((i, index) => {
                                     return (
-                                    <p key={index}
-                                        style={{ fontSize: 20}}
+                                    <b key={index}
+                                        style={{ fontSize: 18}}
                                     >
                                         {"  "+ i.name +"  "}
-                                    </p>
+                                    </b>
                                     );
                                 })}
-                                </Box>
+                                </div>
                                 <p style={{fontSize:"100%"}}>{tv?.overview}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <h1>
-                OverView
-            </h1>
-            <h2>{id}</h2>
-            <h2>{name}</h2>
+            <Container>
+                <br/>
+                <h1 className='text-white'>To Billed Cast</h1>
+                <div className='cast-container'>
+                <div className='cast-box'>
+                    {cast ? cast.map((item,index)=>{
+                        return(
+                            <div key={index}>
+                            <img
+                            height={"150px"}
+                            width={"100px"}
+                            alt={item.name}
+                            src={
+                              item.profile_path === null
+                                ? `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png`
+                                : `http://image.tmdb.org/t/p/w500${item.profile_path}`
+                            }
+                          />
+                            <p>{item?.name}</p>
+                            </div>
+                        ) 
+                    }):null}
+                </div>
+
+                <div className='status'>
+                    <div>
+                    <h4>status</h4>
+                    </div>
+                    <h4>orgina</h4>
+                    <h4>status</h4>
+                </div>
+
+                </div>
+            </Container>
         </div>
     )
 }

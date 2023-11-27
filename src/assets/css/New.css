@@ -165,11 +165,13 @@ h3 {
 .grid-poster {
   display: grid;
   grid-template-columns: auto auto;
+  grid-column-gap: -20px;
 }
 .grid-poster img {
   width: 300px;
   padding: 20px;
   margin-top: 20px;
+  margin-left: 50px;
 }
 @media screen and (max-width: 650px) {
   .grid-poster {
@@ -179,4 +181,40 @@ h3 {
   .grid-poster img {
     display: none;
   }
+  
+}
+
+.cast-box {
+  /* display: flex;
+  flex-direction: row;
+  margin-right: 20px; */
+  overflow: hidden;
+  display: flex;
+  width: 80%;
+  flex-direction: row;
+  gap: 20px;
+  grid-row: 2;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+  /* height: 40vh; */
+}
+.cast-box p {
+  text-wrap: balance;
+  width: 100px;
+}
+.cast-container {
+  display: flex;
+  flex-direction: row;
+
+}
+@media screen and (max-width: 650px) {
+  .cast-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.status {
+  margin-left: 10px;
 }
