@@ -37,7 +37,7 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 
-export default function IndexNavbar() {
+export default function NewNav() {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");

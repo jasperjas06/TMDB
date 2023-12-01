@@ -1,9 +1,12 @@
 import { Typography } from '@material-ui/core'
-import { Box, Container, Grid } from '@mui/material'
+import {  Container } from '@mui/material'
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 import "../../assets/css/New.css"
+import Video from 'components/Body/Video'
+import Footer from 'components/Footer/Footer'
+import NewNav from 'components/Navbars/NewNav'
 
 const OverView = () => {
     const { id, name } = useParams()
@@ -59,9 +62,17 @@ const OverView = () => {
         // console.log(tv,"cast");
     }, [tv])
     return (
-        <div>
-            <Button onClick={() => { navigate(-1) }}>Back</Button>
-            <div >
+        <>
+            <NewNav/>
+        
+        <div className='section section-basic'>
+        <div className='main'>
+
+        
+            {/* <Button onClick={() => { navigate(-1) }}>Back</Button> */}
+            
+            <Container >
+                <h1 className="text-white">{name}</h1>
                 <div style={style}>
                     <div className='over-black'>
                         
@@ -87,10 +98,11 @@ const OverView = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Container>
             <Container>
                 <br/>
                 <h1 className='text-white'>To Billed Cast</h1>
+                <center></center>
                 <div className='cast-container'>
                 <div className='cast-box'>
                     {cast ? cast.map((item,index)=>{
@@ -112,17 +124,53 @@ const OverView = () => {
                     }):null}
                 </div>
 
-                <div className='status'>
-                    <div>
-                    <h4>status</h4>
+                {/* <Container className='status'>
+                <center >
+                 
+                    <div style={{display:"flex",maxWidth:"360px", justifyContent:"space-between"}}>
+                    <h4>status :</h4><Typography style={{color:"yellow"}}>{tv?.status}</Typography>
                     </div>
-                    <h4>orgina</h4>
-                    <h4>status</h4>
-                </div>
 
+                    <div style={{display:"flex",maxWidth:"360px", justifyContent:"space-between"}}>
+                    <h4>original_name :</h4><Typography style={{color:"yellow"}}>{tv?.original_name}</Typography>
+                    </div>
+
+                    <div style={{display:"flex",maxWidth:"360px", justifyContent:"space-between"}}>
+                    <h4>first_air_date :</h4><Typography style={{color:"yellow"}}>{tv?.first_air_date}</Typography>
+                    </div>
+                    <div style={{display:"flex",maxWidth:"360px", justifyContent:"space-between"}}>
+                    <h4>episodes :</h4><Typography style={{color:"yellow"}}>{tv?.number_of_episodes}</Typography>
+                    </div>
+                    <div style={{display:"flex",maxWidth:"360px", justifyContent:"space-between"}}>
+                    <h4>number_of_seasons :</h4><Typography style={{color:"yellow"}}>{tv?.number_of_seasons}</Typography>
+                    </div>
+                       
+                </center>
+                </Container> */}
                 </div>
             </Container>
+
+            <Container>
+                {/* <Video id={id}/> */}
+            </Container>
+
+            {/* <Container>
+            <br/>
+            <h1 className='text-white'>Production Companies</h1>
+                <div>
+                   {tv?.production_companies?.map((item,index)=>{
+                    return(
+                        <div key={item.id}>
+                        <img alt={item.name} src={`http://image.tmdb.org/t/p/w500${item.logo_path}`} />
+                        </div>
+                    )
+                   })} 
+                </div>
+            </Container> */}
+            {/* <Footer/> */}
+            </div>
         </div>
+        </>
     )
 }
 
