@@ -17,7 +17,7 @@
 */
 import React from "react";
 import { ButtonGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // reactstrap components
 import {
   Button,
@@ -41,6 +41,7 @@ export default function IndexNavbar() {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
+  const navigate = useNavigate();
   React.useEffect(() => {
     window.addEventListener("scroll", changeColor);
     return function cleanup() {
@@ -123,9 +124,15 @@ export default function IndexNavbar() {
             </Row>
           </div>
           <Nav navbar>
-          <span style={{color:"white",marginRight:"20px"}}>Search</span>
-            
+          <NavLink href="/Search-page">
+
+          <span style={{color:"white",marginRight:"20px"}} >Search</span>
+          </NavLink>
+          
+          <NavLink href="/profile-page">
+
           <span style={{color:"white",marginRight:"20px"}}>Profile</span>
+          </NavLink>
             
             
             

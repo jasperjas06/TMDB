@@ -32,7 +32,9 @@ import RegisterPage from "views/examples/RegisterPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
 import LoginPage from "views/examples/LoginPage";
 import ExpGengres from "views/examples/Exp_Genres";
-import OverView from "views/page/OverView";
+import OverView from "views/page/OverView.js";
+import Search from "views/examples/Search.js";
+import MovieOverview from "views/page/Movie/MovieOver";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -49,7 +51,8 @@ root.render(
       <Route path="/login-page" element={<LoginPage />} />
       <Route path="/profile-page" element={<ProfilePage />} />
       <Route path="/view-page/:id/:name" element={<OverView />} />
-      {/* <Route path="/view-page" element={OverView}/> */}
+      <Route path="/Movie/:id/:name" element={<MovieOverview />} />
+      <Route path="/search-page" element={<Search />} />
       <Route path="*" element={<Navigate to="/home-page" replace />} />
     </Routes>
   </BrowserRouter>

@@ -246,3 +246,28 @@ max-height: 40vh;
   align-items: center;
   padding: 20px; */
 }
+
+.bottom-nav {
+  background-color: rgba(0, 0, 0, 0);
+}
+.search-grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto ;
+  gap: 10px;
+
+}
+@media screen and (max-width: 984px) {
+  .search-grid {
+    display: grid;
+  grid-template-columns: auto auto  ;
+  }
+  
+}
+@media screen and (max-width: 656px) {
+  .search-grid {
+    display: grid;
+  grid-template-columns: auto   ;
+  }
+  
+}
+/* 983 */

@@ -3,13 +3,11 @@ import {  Container } from '@mui/material'
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
-import "../../assets/css/New.css"
-import Video from 'components/Body/Video'
-import Footer from 'components/Footer/Footer'
+import "../../../assets/css/New.css"
 import NewNav from 'components/Navbars/NewNav'
-import Review from './Tv/Review'
+// import Review from './Tv/Review'
 
-const OverView = () => {
+const MovieOverview = () => {
     const { id, name } = useParams()
     const [tv, setTv] = React.useState([])
     const [img, setImg] = React.useState("")
@@ -27,7 +25,7 @@ const OverView = () => {
 
     const getData = () => {
         fetch(
-            `https://api.themoviedb.org/3/tv/${id}?language=en-US`,
+            `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
             options
         )
             .then((response) => response.json())
@@ -35,7 +33,7 @@ const OverView = () => {
             .catch((err) => console.error(err));
 
             fetch(
-                `https://api.themoviedb.org/3/tv/${id}/credits?language=en-US`,
+                `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`,
                 options
               )
                 .then((response) => response.json())
@@ -64,7 +62,7 @@ const OverView = () => {
     }, [tv])
     return (
         <>
-            <NewNav/>
+            {/* <NewNav/> */}
         
         <div className='section section-basic'>
         <div className='main'>
@@ -153,7 +151,7 @@ const OverView = () => {
 
             <Container>
                 {/* <Video id={id}/> */}
-                <Review id={id}/>
+                {/* <Review id={id}/> */}
             </Container>
 
             {/* <Container>
@@ -176,4 +174,4 @@ const OverView = () => {
     )
 }
 
-export default OverView
+export default MovieOverview

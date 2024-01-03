@@ -35,14 +35,15 @@ export default function Footer() {
       <Container>
         <Row>
           <Col md="3">
-            <h1 className="title">BLK•</h1>
+            <h1 className="title">BOOK•<span style={{fontWeight:"300"}}>Mark</span></h1>
+          </Col>
+          <Col md="3">
+          Copty
           </Col>
           <Col md="3">
           </Col>
           <Col md="3">
-          </Col>
-          <Col md="3">
-            <h3 className="title">Follow us:</h3>
+            <h3 className="title">Follow in:</h3>
             <div className="btn-wrapper profile">
               <Button
                 className="btn-icon btn-neutral btn-round btn-simple"

@@ -47,7 +47,7 @@ const Geners = () => {
         {genres.map((item, index) => {
             
           return (
-            <Button color="success" >
+            <Button color="success" key={item.id}>
               {item.name}
             </Button>
           );

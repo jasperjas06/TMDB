@@ -77,7 +77,7 @@ const Streaming = () => {
     .catch((err) => console.error(err));
 
     const handleOpen = ({item}) =>{
-      console.log(item,"handleOpen");
+      // console.log(item,"handleOpen");
       if(item){
         // setName(item?.name)
         // setOpen(true)
@@ -124,7 +124,7 @@ const Streaming = () => {
       </div>
       
     </div>
-    {open && <CustomModal open={open} setOpen={setOpen} data={newData} tv={true}/>}
+    {/* {open && <CustomModal open={open} setOpen={setOpen} data={newData} tv={true}/>} */}
     </>
   );
 };

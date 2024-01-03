@@ -59,7 +59,7 @@ export default function Index() {
           
           <Trending />
           <Tablet/>
-          <Geners/>
+          {/* <Geners/> */}
           {/* <JavaScript /> */}
           {/* <OnTv /> */}
           {/* <Basics />
@@ -74,7 +74,7 @@ export default function Index() {
           <Examples />
           <Download /> */}
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );
