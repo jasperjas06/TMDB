@@ -104,13 +104,13 @@ const Streaming = () => {
             <ArrowCircleLeftIcon sx={{ color: "black" }} />
           </IconButton>
         )}
-        <ul ref={scrl} onScroll={scrollCheck}>
+        <div className="ul" ref={scrl} onScroll={scrollCheck}>
           {data.map((item, index) => {
             return (
               <img className="slider" style={{maxWidth:"250px", padding:"10px"}} src={`http://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.name} key={item.id} onClick={()=>handleOpen({item})}/>
             );
           })}
-        </ul>
+        </div>
         {!scrolEnd && (
           <IconButton
             className="next"

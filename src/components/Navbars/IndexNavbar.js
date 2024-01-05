@@ -37,7 +37,7 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 
-export default function IndexNavbar() {
+export default function IndexNavbar({profile}) {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
@@ -124,15 +124,23 @@ export default function IndexNavbar() {
             </Row>
           </div>
           <Nav navbar>
+          {
+            profile ? (
+                <NavLink href="/home-page" style={{color:"white",marginRight:"20px"}}>Home</NavLink>
+            ) : null
+          }
           <NavLink href="/Search-page">
 
           <span style={{color:"white",marginRight:"20px"}} >Search</span>
           </NavLink>
-          
-          <NavLink href="/profile-page">
-
+          {
+            !profile ? (
+              <NavLink href="/profile-page">
           <span style={{color:"white",marginRight:"20px"}}>Profile</span>
           </NavLink>
+            ) : null
+          }
+          
             
             
             

@@ -35,6 +35,7 @@ import ExpGengres from "views/examples/Exp_Genres";
 import OverView from "views/page/OverView.js";
 import Search from "views/examples/Search.js";
 import MovieOverview from "views/page/Movie/MovieOver";
+import ScrollToTop from "ScrollToTop";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -43,6 +44,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 // {console.log(process.env.REACT_APP_KEY,"index")}
 root.render(
   <BrowserRouter>
+  <ScrollToTop/>
     <Routes>
       <Route path="/home-page" element={<Index />} />
       <Route path="/landing-page" element={<LandingPage />} />

@@ -100,11 +100,12 @@ function Trending(props) {
     <Container>
         <h2 className="title" >New Arrivals</h2>
     </Container>
-    <div style={{position:'absolute',width:"100%", zIndex:-1, }}>
+    <div className="bg-container">
+    <div style={{position:'absolute',width:"100%", zIndex:0, }}>
           {/* <AutoPlayer id={id} /> */}
           <BackG data={bgdata} />
-          </div>
-          <div >
+    </div>
+          
       <div className="App">
         {scrollX !== 0 && (
           <IconButton
@@ -116,21 +117,13 @@ function Trending(props) {
             <ArrowCircleLeftIcon sx={{ color: "white" }} />
           </IconButton>
         )}
-        <ul ref={scrl} onScroll={scrollCheck}>
+        <div className="ul" ref={scrl} onScroll={scrollCheck}>
           {data.map((item, index) => {
             return (
-              // <div >
               <img className="slider" style={{maxWidth:"250px", padding:"10px"}} src={`http://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.name} key={item.id} onClick={()=>handlesend(item)}/>
-                // <Card sx={{ height: "100%", maxWidth: "500px" }} className="slider" >
-                //   <CardMedia
-                //     sx={{ height: 270, width: "200px" }}
-                //     image={`http://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                //   />
-                // </Card>
-              // </div>
             );
           })}
-        </ul>
+        </div>
         {!scrolEnd && (
           <IconButton
             className="next"

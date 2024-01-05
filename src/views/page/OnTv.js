@@ -3,6 +3,7 @@ import gsap from "gsap";
 import React, { useRef, useState } from "react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import { useNavigate } from "react-router-dom";
 
 const OnTv = () => {
 
@@ -13,6 +14,18 @@ const OnTv = () => {
   let scrl = useRef(null);
   const [scrollX, setscrollX] = useState(0);
   const [scrolEnd, setscrolEnd] = useState(false);
+  const [newdata,setNewData] = useState({})
+  const navigate = useNavigate();
+  const handleOpen = ({item}) =>{
+    // console.log(item,"handleOpen");
+    if(item){
+      // setName(item?.name)
+      // setOpen(true)
+      setNewData(item)
+      navigate(`/view-page/${item?.id}/${item.name}`)
+    }
+    // name && history.push(generatePath("/view/:name"),{name})
+  }
 
   const slide = (shift) => {
     scrl.current.scrollLeft += shift;
@@ -90,20 +103,13 @@ const OnTv = () => {
             <ArrowCircleLeftIcon sx={{ color: "black" }} />
           </IconButton>
         )}
-        <ul ref={scrl} onScroll={scrollCheck}>
+        <div className="ul" ref={scrl} onScroll={scrollCheck}>
           {data.map((item, index) => {
             return (
-              <div className="slider" key={item.id} >
-                <Card sx={{ height: "100%", maxWidth: "200px" }}>
-                  <CardMedia
-                    sx={{ height: 290, width: "200px" }}
-                    image={`http://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                  />
-                </Card>
-              </div>
+              <img className="slider" style={{maxWidth:"250px", padding:"10px"}} src={`http://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.name} key={item.id} onClick={()=>handleOpen({item})}/>
             );
           })}
-        </ul>
+        </div>
         {!scrolEnd && (
           <IconButton
             className="next"

@@ -19,6 +19,7 @@ import React from "react";
 import classnames from "classnames";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
+import "../../assets/css/New.css"
 // reactstrap components
 import {
   Button,
@@ -46,6 +47,7 @@ import {
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import Footer from "components/Footer/Footer.js";
+import IndexNavbar from "components/Navbars/IndexNavbar";
 
 const carouselItems = [
   {
@@ -91,10 +93,14 @@ export default function ProfilePage() {
   }, []);
   return (
     <>
-      <ExamplesNavbar />
+      {/* <ExamplesNavbar /> */}
+      <IndexNavbar profile={true} />
       <div className="wrapper">
         <div className="page-header">
-          <img
+        {/* <Container>
+            <h1>Profile</h1>
+          </Container> */}
+          {/* <img
             alt="..."
             className="dots"
             src={require("assets/img/dots.png")}
@@ -103,10 +109,11 @@ export default function ProfilePage() {
             alt="..."
             className="path"
             src={require("assets/img/path4.png")}
-          />
+          /> */}
           <Container className="align-items-center">
+          
             <Row>
-              <Col lg="6" md="6">
+              {/* <Col lg="6" md="6">
                 <h1 className="profile-title text-left">Mike Scheinder</h1>
                 <h5 className="text-on-back">01</h5>
                 <p className="profile-description">
@@ -153,19 +160,63 @@ export default function ProfilePage() {
                     Follow us
                   </UncontrolledTooltip>
                 </div>
-              </Col>
-              <Col className="ml-auto mr-auto" lg="4" md="6">
+              </Col> */}
+              <Col className="ml-auto mr-auto" lg="8" md="8">
                 <Card className="card-coin card-plain">
                   <CardHeader>
+                    
                     <img
                       alt="..."
                       className="img-center img-fluid rounded-circle"
                       src={require("assets/img/mike.jpg")}
                     />
-                    <h4 className="title">Transactions</h4>
+                    <div>
+
+                    {/* <img alt="edit" src={require("assets/img/draw.png")} className="edit-btn"/> */}
+                    </div>
+                    <h4 className="title">Jasper  </h4>
                   </CardHeader>
                   <CardBody>
-                    <Nav
+                  <Container>
+                  <h1 className="profile-title text-left">Projects</h1>
+                {/* <h5 className="text-on-back">02</h5> */}
+                <p >
+                  An artist of considerable range, Ryan — the name taken by
+                  Melbourne-raised, Brooklyn-based Nick Murphy — writes,
+                  performs and records all of his own music, giving it a warm,
+                  intimate feel with a solid groove structure. An artist of
+                  considerable range.
+                </p>
+                <div className="btn-wrapper pt-3">
+                  <Button
+                    className="btn-simple"
+                    color="primary"
+                    href="#pablo"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <i className="tim-icons icon-book-bookmark" /> Bookmark
+                  </Button>
+                  <Button
+                    className="btn-simple"
+                    color="info"
+                    href="#pablo"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <i className="tim-icons icon-bulb-63" /> Check it!
+                  </Button>
+                </div>
+                  <Row >
+              {/* <Col md="6">
+                <Row className="justify-content-between align-items-center">
+                  <UncontrolledCarousel items={carouselItems} />
+                </Row>
+              </Col> */}
+              <Col >
+                
+              </Col>
+            </Row>
+                  </Container>
+                    {/* <Nav
                       className="nav-tabs-primary justify-content-center"
                       tabs
                     >
@@ -211,8 +262,8 @@ export default function ProfilePage() {
                           News
                         </NavLink>
                       </NavItem>
-                    </Nav>
-                    <TabContent
+                    </Nav> */}
+                    {/* <TabContent
                       className="tab-subcategories"
                       activeTab={"tab" + tabs}
                     >
@@ -295,7 +346,8 @@ export default function ProfilePage() {
                           </tbody>
                         </Table>
                       </TabPane>
-                    </TabContent>
+                    </TabContent> */}
+                  <p style={{float:'right'}}>Edit</p>
                   </CardBody>
                 </Card>
               </Col>

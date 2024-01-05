@@ -86,7 +86,7 @@ const Search = () => {
               </Container>
             ) : (
               <Container>
-                <h1>Tv</h1>
+                <h1>Tv&Series</h1>
                 <TvSearch search={search}/>
               </Container>
             )

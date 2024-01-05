@@ -71,7 +71,7 @@ const MovieOverview = () => {
             {/* <Button onClick={() => { navigate(-1) }}>Back</Button> */}
             
             <Container >
-                <h1 className="text-white">{name}</h1>
+                <h1 style={{fontSize:"40px",fontWeight:"900"}}>{name}</h1>
                 <div style={style}>
                     <div className='over-black'>
                         
