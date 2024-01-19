@@ -5,11 +5,11 @@ import { Button } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 import "../../../assets/css/New.css"
 import NewNav from 'components/Navbars/NewNav'
-// import Review from './Tv/Review'
+// import Review from './data/Review'
 
 const MovieOverview = () => {
     const { id, name } = useParams()
-    const [tv, setTv] = React.useState([])
+    const [data, setData] = React.useState([])
     const [img, setImg] = React.useState("")
     const [poster,setPoster] = React.useState("")
     const [cast,setCast] = React.useState([])
@@ -29,7 +29,7 @@ const MovieOverview = () => {
             options
         )
             .then((response) => response.json())
-            .then((response) => setTv(response))
+            .then((response) => setData(response))
             .catch((err) => console.error(err));
 
             fetch(
@@ -39,9 +39,9 @@ const MovieOverview = () => {
                 .then((response) => response.json())
                 .then((response) => setCast(response.cast))
                 .catch((err) => console.error(err));
-        if (tv) {
-            setImg(`https://image.tmdb.org/t/p/original${tv?.backdrop_path}`)
-            setPoster(`http://image.tmdb.org/t/p/w500/${tv?.poster_path}`)
+        if (data?.backdrop_path && data?.poster_path) {
+            setImg(`https://image.tmdb.org/t/p/original${data?.backdrop_path}`)
+            setPoster(`http://image.tmdb.org/t/p/w500/${data?.poster_path}`)
         }
 
     }
@@ -58,8 +58,9 @@ const MovieOverview = () => {
 
     React.useEffect(() => {
         getData()
-        // console.log(tv,"cast");
-    }, [tv])
+        // console.log(cast,"cast");
+    }, [data])
+    // console.log(cast);
     return (
         <>
             {/* <NewNav/> */}
@@ -67,7 +68,13 @@ const MovieOverview = () => {
         <div className='section section-basic'>
         <div className='main'>
 
-        
+        {/* {
+                cast.map((i,index)=>{
+                    return(
+                        <h5>{i?.poster_path}</h5>
+                    )
+                })
+            } */}
             {/* <Button onClick={() => { navigate(-1) }}>Back</Button> */}
             
             <Container >
@@ -76,13 +83,13 @@ const MovieOverview = () => {
                     <div className='over-black'>
                         
                         <div className='grid-poster'>
-                            <img className='poster-img' alt={tv?.name} src={poster} />
+                            <img className='poster-img' alt={data?.name} src={poster} />
                             <div>
                                 <h1 className="text-white" style={{ fontWeight: "600", marginTop: "4rem" }}>
-                                    {tv?.name} <br />
+                                    {data?.name} <br />
                                 </h1>
                                 <div style={{ display: "flex", flexDirection: "row" }}>
-                                {tv.genres?.map((i, index) => {
+                                {data.genres?.map((i, index) => {
                                     return (
                                     <b key={index}
                                         style={{ fontSize: 18}}
@@ -92,7 +99,7 @@ const MovieOverview = () => {
                                     );
                                 })}
                                 </div>
-                                <p style={{fontSize:"100%"}}>{tv?.overview}</p>
+                                <p style={{fontSize:"100%"}}>{data?.overview}</p>
                             </div>
                         </div>
                     </div>
@@ -127,21 +134,21 @@ const MovieOverview = () => {
                 <center >
                  
                     <div style={{display:"flex",maxWidth:"360px", justifyContent:"space-between"}}>
-                    <h4>status :</h4><Typography style={{color:"yellow"}}>{tv?.status}</Typography>
+                    <h4>status :</h4><Typography style={{color:"yellow"}}>{data?.status}</Typography>
                     </div>
 
                     <div style={{display:"flex",maxWidth:"360px", justifyContent:"space-between"}}>
-                    <h4>original_name :</h4><Typography style={{color:"yellow"}}>{tv?.original_name}</Typography>
+                    <h4>original_name :</h4><Typography style={{color:"yellow"}}>{data?.original_name}</Typography>
                     </div>
 
                     <div style={{display:"flex",maxWidth:"360px", justifyContent:"space-between"}}>
-                    <h4>first_air_date :</h4><Typography style={{color:"yellow"}}>{tv?.first_air_date}</Typography>
+                    <h4>first_air_date :</h4><Typography style={{color:"yellow"}}>{data?.first_air_date}</Typography>
                     </div>
                     <div style={{display:"flex",maxWidth:"360px", justifyContent:"space-between"}}>
-                    <h4>episodes :</h4><Typography style={{color:"yellow"}}>{tv?.number_of_episodes}</Typography>
+                    <h4>episodes :</h4><Typography style={{color:"yellow"}}>{data?.number_of_episodes}</Typography>
                     </div>
                     <div style={{display:"flex",maxWidth:"360px", justifyContent:"space-between"}}>
-                    <h4>number_of_seasons :</h4><Typography style={{color:"yellow"}}>{tv?.number_of_seasons}</Typography>
+                    <h4>number_of_seasons :</h4><Typography style={{color:"yellow"}}>{data?.number_of_seasons}</Typography>
                     </div>
                        
                 </center>
@@ -150,6 +157,7 @@ const MovieOverview = () => {
             </Container>
 
             <Container>
+            
                 {/* <Video id={id}/> */}
                 {/* <Review id={id}/> */}
             </Container>
@@ -158,7 +166,7 @@ const MovieOverview = () => {
             <br/>
             <h1 className='text-white'>Production Companies</h1>
                 <div>
-                   {tv?.production_companies?.map((item,index)=>{
+                   {data?.production_companies?.map((item,index)=>{
                     return(
                         <div key={item.id}>
                         <img alt={item.name} src={`http://image.tmdb.org/t/p/w500${item.logo_path}`} />

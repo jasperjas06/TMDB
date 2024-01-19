@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useContext } from "react";
 import { ButtonGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 // reactstrap components
@@ -36,8 +36,10 @@ import {
   Col,
   UncontrolledTooltip,
 } from "reactstrap";
+import AuthContext from "views/Auth";
 
 export default function IndexNavbar({profile}) {
+  // const [token,setToken] = useContext(AuthContext)
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
@@ -48,6 +50,11 @@ export default function IndexNavbar({profile}) {
       window.removeEventListener("scroll", changeColor);
     };
   }, []);
+  const logout =()=>{
+    localStorage.clear()
+    // setToken("")
+    navigate("/book-mark")
+  }
   const changeColor = () => {
     if (
       document.documentElement.scrollTop > 99 ||
@@ -142,7 +149,9 @@ export default function IndexNavbar({profile}) {
           }
           
             
-            
+          <NavLink onClick={logout}>
+          <span style={{color:"white",marginRight:"20px"}}>Logout</span>
+          </NavLink>
             
           </Nav>
         </Collapse>

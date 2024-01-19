@@ -41,6 +41,8 @@ import {
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import Footer from "components/Footer/Footer.js";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 export default function RegisterPage() {
   const [squares1to6, setSquares1to6] = React.useState("");
@@ -48,7 +50,37 @@ export default function RegisterPage() {
   const [fullNameFocus, setFullNameFocus] = React.useState(false);
   const [emailFocus, setEmailFocus] = React.useState(false);
   const [passwordFocus, setPasswordFocus] = React.useState(false);
+  const [email, setEmail] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const register = () =>{
+    const Process = async( ) =>{
+      const response = await axios.get(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      console.log({ response });
+      // toast.promise(response, {
+      //   loading: "Process",
+      //   error: "error occurs in data",
+      //   success: "get data successfully...."
+      // })
+      return response;
+    }
+    const callFunction = Process();
+    toast.promise(callFunction, {
+      loading: "Process",
+      error: "error occurs in data",
+      success: "get data successfully...."
+    })
+    console.log(callFunction.finally(""), "callFunction");
+  }
   React.useEffect(() => {
+    // const callFunction= register();
+  //  toast.promise(register, {
+  //   loading: "Process",
+  //   error: "error occurs in data",
+  //   success: "get data successfully...."
+  // });
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", followCursor);
     // Specify how to clean up after this effect:
@@ -75,15 +107,22 @@ export default function RegisterPage() {
         "deg)"
     );
   };
+  const handleSubmit = () => {
+    if (name === "" || email === "" || password === "") {
+      toast.error("Please fill all the fields");
+    } else {
+      setPassword("");
+      setEmail("");
+    }
+  };
   return (
     <>
-      <ExamplesNavbar />
       <div className="wrapper">
         <div className="page-header">
-          <div className="page-header-image" />
-          <div className="content">
-            <Container>
-              <Row>
+          <div  />
+          <div className="content" style={{ maxHeight: "65vh", width: "100%" }}>
+            <Container >
+              <Row >
                 <Col className="offset-lg-0 offset-md-3" lg="5" md="6">
                   <div
                     className="square square-7"
@@ -120,6 +159,7 @@ export default function RegisterPage() {
                             type="text"
                             onFocus={(e) => setFullNameFocus(true)}
                             onBlur={(e) => setFullNameFocus(false)}
+                            onChange={(e) => setName(e.target.value)}
                           />
                         </InputGroup>
                         <InputGroup
@@ -137,6 +177,7 @@ export default function RegisterPage() {
                             type="text"
                             onFocus={(e) => setEmailFocus(true)}
                             onBlur={(e) => setEmailFocus(false)}
+                            onChange={(e) => setEmail(e.target.value)}
                           />
                         </InputGroup>
                         <InputGroup
@@ -154,25 +195,21 @@ export default function RegisterPage() {
                             type="text"
                             onFocus={(e) => setPasswordFocus(true)}
                             onBlur={(e) => setPasswordFocus(false)}
+                            onChange={(e) => setPassword(e.target.value)}
                           />
                         </InputGroup>
-                        <FormGroup check className="text-left">
-                          <Label check>
-                            <Input type="checkbox" />
-                            <span className="form-check-sign" />I agree to the{" "}
-                            <a
-                              href="#pablo"
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              terms and conditions
-                            </a>
-                            .
-                          </Label>
+                        <FormGroup className="text-left">
+                          <center>
+                            <span>
+                              Already have an account.{" "}
+                              <a href="book-mark">SignIn</a>
+                            </span>
+                          </center>
                         </FormGroup>
                       </Form>
                     </CardBody>
                     <CardFooter>
-                      <Button className="btn-round" color="primary" size="lg">
+                      <Button onClick={register} className="btn-round" color="primary" size="lg">
                         Get Started
                       </Button>
                     </CardFooter>
@@ -213,7 +250,7 @@ export default function RegisterPage() {
             </Container>
           </div>
         </div>
-        <Footer />
+        <Toaster/>
       </div>
     </>
   );

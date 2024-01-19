@@ -36,6 +36,7 @@ import OverView from "views/page/OverView.js";
 import Search from "views/examples/Search.js";
 import MovieOverview from "views/page/Movie/MovieOver";
 import ScrollToTop from "ScrollToTop";
+import App from "views/App";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -46,6 +47,7 @@ root.render(
   <BrowserRouter>
   <ScrollToTop/>
     <Routes>
+      <Route path="/book-mark" element={<App />} />
       <Route path="/home-page" element={<Index />} />
       <Route path="/landing-page" element={<LandingPage />} />
       <Route path="/gen-page" element={<ExpGengres />} />
@@ -55,7 +57,7 @@ root.render(
       <Route path="/view-page/:id/:name" element={<OverView />} />
       <Route path="/Movie/:id/:name" element={<MovieOverview />} />
       <Route path="/search-page" element={<Search />} />
-      <Route path="*" element={<Navigate to="/home-page" replace />} />
+      <Route path="*" element={<Navigate to="/book-mark" replace />} />
     </Routes>
   </BrowserRouter>
 );
