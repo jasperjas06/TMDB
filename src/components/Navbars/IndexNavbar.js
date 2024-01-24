@@ -53,7 +53,7 @@ export default function IndexNavbar({profile}) {
   const logout =()=>{
     localStorage.clear()
     // setToken("")
-    navigate("/book-mark")
+    navigate("/")
   }
   const changeColor = () => {
     if (

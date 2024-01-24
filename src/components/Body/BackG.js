@@ -8,7 +8,7 @@ const BackG = ({data}) => {
   const navigate = useNavigate();
     const imageURL = `https://image.tmdb.org/t/p/original${data?.backdrop_path}`
     const handlesend = ({data}) =>{
-      console.log(data);
+      // console.log(data);
       if(data){
         navigate(`/Movie/${data.id}/${data.title}`)
       }
@@ -32,8 +32,8 @@ const BackG = ({data}) => {
       };
   return (
     <div className='container-bg'>
-      <div style={style} className='images-bg'>
-        <div className='sub_box'  >
+      <div style={style} className='images-bg' >
+        <div className='sub_box' onClick={()=>handlesend({data})} >
 
         <img src={require("assets/img/share.png")} className='open-img' alt='open' onClick={()=>handlesend({data})}/>
         <div style={{padding:'20px'}} className='middle'>
@@ -43,7 +43,7 @@ const BackG = ({data}) => {
             <br/>
             <br/>
             <br/>
-            <text  className='text'>{data?.title}</text>
+            <p  className='text'>{data?.title}</p>
             <br/>
             <br/>
             {/* <Typography  >{data?.overview}</Typography> */}

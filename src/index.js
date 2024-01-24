@@ -17,7 +17,7 @@
 */
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate, RouterProvider } from "react-router-dom";
 // import dotenv from "dotenv"
 
 import "assets/css/nucleo-icons.css";
@@ -37,27 +37,30 @@ import Search from "views/examples/Search.js";
 import MovieOverview from "views/page/Movie/MovieOver";
 import ScrollToTop from "ScrollToTop";
 import App from "views/App";
+import { router } from "./router";
 
-
+const token = localStorage.getItem("token");
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // dotenv.config({path:''})
 // eslint-disable-next-line no-lone-blocks
 // {console.log(process.env.REACT_APP_KEY,"index")}
 root.render(
-  <BrowserRouter>
-  <ScrollToTop/>
-    <Routes>
-      <Route path="/book-mark" element={<App />} />
-      <Route path="/home-page" element={<Index />} />
-      <Route path="/landing-page" element={<LandingPage />} />
-      <Route path="/gen-page" element={<ExpGengres />} />
-      <Route path="/register-page" element={<RegisterPage />} />
-      <Route path="/login-page" element={<LoginPage />} />
-      <Route path="/profile-page" element={<ProfilePage />} />
-      <Route path="/view-page/:id/:name" element={<OverView />} />
-      <Route path="/Movie/:id/:name" element={<MovieOverview />} />
-      <Route path="/search-page" element={<Search />} />
-      <Route path="*" element={<Navigate to="/book-mark" replace />} />
-    </Routes>
-  </BrowserRouter>
+  <RouterProvider router={router} />
+  // <BrowserRouter>
+  // <ScrollToTop/>
+  //   <Routes>
+  //     <Route path="/" element={<App />} />
+  //     <Route path="/landing-page" element={<LandingPage />} />
+  //     {token ? (<>
+  //     <Route path="/home-page" element={<Index />} />
+  //     <Route path="/gen-page" element={<ExpGengres />} />
+  //     <Route path="/register-page" element={<RegisterPage />} />
+  //     <Route path="/login-page" element={<LoginPage />} />
+  //     <Route path="/profile-page" element={<ProfilePage />} />
+  //     <Route path="/view-page/:id/:name" element={<OverView />} />
+  //     <Route path="/Movie/:id/:name" element={<MovieOverview />} />
+  //     <Route path="/search-page" element={<Search />} /></>):null}
+  //     <Route path="*" element={<Navigate to="/" replace />} />
+  //   </Routes>
+  // </BrowserRouter>
 );

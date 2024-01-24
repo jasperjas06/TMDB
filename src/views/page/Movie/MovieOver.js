@@ -1,18 +1,27 @@
-import { Typography } from '@material-ui/core'
-import {  Container } from '@mui/material'
+
+import {  BottomNavigation, BottomNavigationAction, Container } from '@mui/material'
 import React from 'react'
-import { Button } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 import "../../../assets/css/New.css"
+import { Col, Row } from 'reactstrap'
+import Review from './Review'
+import YoutubeEmbed from './Trailer'
+import Keywords from './Keywords'
+import Recommendations from './Recommendations'
 import NewNav from 'components/Navbars/NewNav'
-// import Review from './data/Review'
+import Collection from './Collection'
+import Video from './Video'
+import Poster from './Poster'
 
 const MovieOverview = () => {
+    // const key = setLocalStorage.getItem("key")
     const { id, name } = useParams()
     const [data, setData] = React.useState([])
+    const [movieName,setMovieName] = React.useState("")
     const [img, setImg] = React.useState("")
     const [poster,setPoster] = React.useState("")
     const [cast,setCast] = React.useState([])
+    const [value, setValue] = React.useState(0);
     const navigate = useNavigate()
     const options = {
         method: "GET",
@@ -58,24 +67,17 @@ const MovieOverview = () => {
 
     React.useEffect(() => {
         getData()
-        // console.log(cast,"cast");
+        if(data){
+            // console.log(data);
+            setMovieName(data?.title)
+        }
     }, [data])
-    // console.log(cast);
     return (
         <>
             {/* <NewNav/> */}
         
         <div className='section section-basic'>
         <div className='main'>
-
-        {/* {
-                cast.map((i,index)=>{
-                    return(
-                        <h5>{i?.poster_path}</h5>
-                    )
-                })
-            } */}
-            {/* <Button onClick={() => { navigate(-1) }}>Back</Button> */}
             
             <Container >
                 <h1 style={{fontSize:"40px",fontWeight:"900"}}>{name}</h1>
@@ -88,14 +90,16 @@ const MovieOverview = () => {
                                 <h1 className="text-white" style={{ fontWeight: "600", marginTop: "4rem" }}>
                                     {data?.name} <br />
                                 </h1>
-                                <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div style={{ display: "flex", flexDirection: "row" ,}}>
                                 {data.genres?.map((i, index) => {
                                     return (
-                                    <b key={index}
-                                        style={{ fontSize: 18}}
+                                        
+                                    <b  key={index}
+                                        style={{ fontSize: 18, paddingRight:'5px', color:"white"}}
                                     >
-                                        {"  "+ i.name +"  "}
+                                        {i.name }
                                     </b>
+                                    
                                     );
                                 })}
                                 </div>
@@ -105,10 +109,13 @@ const MovieOverview = () => {
                     </div>
                 </div>
             </Container>
+            <div style={{backgroundColor:"whitesmoke",marginTop:"10px"}}>
             <Container>
                 <br/>
-                <h1 className='text-white'>To Billed Cast</h1>
+                <h2 className='' style={{color:"black",fontWeight:"700"}}>To Billed Cast</h2>
                 <center></center>
+                <Row>
+                <Col md={10}>
                 <div className='cast-container'>
                 <div className='cast-box'>
                     {cast ? cast.map((item,index)=>{
@@ -124,58 +131,112 @@ const MovieOverview = () => {
                                 : `http://image.tmdb.org/t/p/w500${item.profile_path}`
                             }
                           />
-                            <p>{item?.name}</p>
+                            <p style={{color:"black"}}>{item?.name}</p>
                             </div>
                         ) 
                     }):null}
                 </div>
-
-                {/* <Container className='status'>
-                <center >
-                 
-                    <div style={{display:"flex",maxWidth:"360px", justifyContent:"space-between"}}>
-                    <h4>status :</h4><Typography style={{color:"yellow"}}>{data?.status}</Typography>
-                    </div>
-
-                    <div style={{display:"flex",maxWidth:"360px", justifyContent:"space-between"}}>
-                    <h4>original_name :</h4><Typography style={{color:"yellow"}}>{data?.original_name}</Typography>
-                    </div>
-
-                    <div style={{display:"flex",maxWidth:"360px", justifyContent:"space-between"}}>
-                    <h4>first_air_date :</h4><Typography style={{color:"yellow"}}>{data?.first_air_date}</Typography>
-                    </div>
-                    <div style={{display:"flex",maxWidth:"360px", justifyContent:"space-between"}}>
-                    <h4>episodes :</h4><Typography style={{color:"yellow"}}>{data?.number_of_episodes}</Typography>
-                    </div>
-                    <div style={{display:"flex",maxWidth:"360px", justifyContent:"space-between"}}>
-                    <h4>number_of_seasons :</h4><Typography style={{color:"yellow"}}>{data?.number_of_seasons}</Typography>
-                    </div>
-                       
-                </center>
-                </Container> */}
                 </div>
+                </Col>
+                <Col md={2}>
+                <div>
+                    <b style={{color:"black"}}>status</b>
+                    <p style={{color:"black"}}>{data?.status}</p>
+                </div>
+                <div>
+                    <b style={{color:"black"}}>original_name</b>
+                    <p style={{color:"black"}}>{data?.original_title}</p>
+                </div>
+                <div>
+                    <b style={{color:"black"}}>relase data</b>
+                    <p style={{color:"black"}}>{data?.release_date}</p>
+                </div>
+                <div>
+                    <b style={{color:"black"}}>average vote</b>
+                    <p style={{color:"black"}}>{data?.vote_average}</p>
+                </div>
+                </Col>
+                </Row>
             </Container>
 
             <Container>
-            
-                {/* <Video id={id}/> */}
-                {/* <Review id={id}/> */}
-            </Container>
-
-            {/* <Container>
             <br/>
-            <h1 className='text-white'>Production Companies</h1>
-                <div>
-                   {data?.production_companies?.map((item,index)=>{
-                    return(
-                        <div key={item.id}>
-                        <img alt={item.name} src={`http://image.tmdb.org/t/p/w500${item.logo_path}`} />
-                        </div>
-                    )
-                   })} 
-                </div>
-            </Container> */}
-            {/* <Footer/> */}
+            <h2 className='' style={{color:"black",fontWeight:"700"}}>Official Trailer</h2>
+            <Container>
+            <Row>
+            <Col md={6}>
+
+            <YoutubeEmbed embedId={id}/>
+            </Col>
+            <Col md={6}>
+            <Container>
+            <b style={{color:"black", padding:"20px"}}>Key words</b>
+            <br/>
+                <Keywords id={id}/>
+            </Container>
+            </Col>
+            </Row>
+            </Container>
+            </Container>
+            <br/>
+            <Container>
+                <Collection id={id} />
+            </Container>   
+            <br/>
+            <Container>
+            <h2 className='' style={{color:"black",fontWeight:"700"}}>Recommendations</h2>
+            <Recommendations id={id} name={movieName}/>
+            </Container>  
+            <br/>
+            <Container>
+            <h2 className='' style={{color:"black",fontWeight:"700"}}>Reviews</h2>
+                <Review id={id}/>
+            </Container>
+            
+
+            <br/>
+            </div>
+            {/* white screen end */}
+            <br/>
+            <Container>
+            <h2 className='' style={{color:"white",fontWeight:"700"}}>Media</h2>
+            <Container>
+                <Row>
+                <BottomNavigation
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+            showLabels
+            className="bottom-nav"
+            sx={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
+          >
+            <BottomNavigationAction
+            sx={{color:"white",fontWeight:"700",fontSize:"20px"}}
+              label="Poster"
+            
+            />
+            <BottomNavigationAction sx={{color:"white",fontWeight:"700",fontSize:"20px"}} label="Video"  
+            
+             />
+          </BottomNavigation>
+                </Row>
+            </Container>
+            <div>
+            {
+            value === 0 ? (
+              <div>
+                <Poster id={id}/>
+              </div>
+            ) : (
+              <div>
+                <Video id={id}/>
+              </div>
+            )
+          }
+            </div>
+            </Container>
+            
             </div>
         </div>
         </>
