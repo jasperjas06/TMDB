@@ -27,8 +27,8 @@ const Review = ({ id }) => {
       .then((response) => { 
         // console.log(response.results[1],"response");
       if(response.results){
-        setData(response.results[1])
-        setContent(response.results[1]?.content) 
+        setData(response.results[0])
+        setContent(response.results[0]?.content) 
       }
 
       })
@@ -60,7 +60,7 @@ const Review = ({ id }) => {
                 readMoreText="Read more"
                 readLessText="Read less"
             >
-                {content}
+                {content? `${content}` : "No Review" }
             </ReadMoreAndLess>
           {/* <ReactReadMoreReadLess
                 charLimit={200}

@@ -53,7 +53,7 @@
     "dotenv": "^16.3.1",
     "gsap": "^3.12.2",
     "mdb-react-ui-kit": "^6.3.0",
-    "moment": "2.29.4",
+    "moment": "^2.29.4",
     "nouislider": "15.4.0",
     "perfect-scrollbar": "1.5.5",
     "react": ">=16.8.0",
