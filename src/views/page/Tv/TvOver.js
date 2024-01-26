@@ -16,11 +16,9 @@ import NewNav from "components/Navbars/NewNav";
 import Collection from "./Collection";
 import Video from "./Video";
 import Poster from "./Poster";
-import MovieFooter from "./MovieFooter";
-import Footer from "components/Footer/Footer";
 import moment from "moment";
 
-const MovieOverview = () => {
+const TvOverView = () => {
   // const key = setLocalStorage.getItem("key")
   const { id, name } = useParams();
   const [data, setData] = React.useState([]);
@@ -41,13 +39,13 @@ const MovieOverview = () => {
   };
 
   const getData = () => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
+    fetch(`https://api.themoviedb.org/3/tv/${id}?language=en-US`, options)
       .then((response) => response.json())
       .then((response) => setData(response))
       .catch((err) => console.error(err));
 
     fetch(
-      `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`,
+      `https://api.themoviedb.org/3/tv/${id}/credits?language=en-US`,
       options
     )
       .then((response) => response.json())
@@ -71,7 +69,7 @@ const MovieOverview = () => {
   React.useEffect(() => {
     getData();
     if (data) {
-    //   console.log(data);
+      // console.log(data);
       setMovieName(data?.title);
       setProduction(data?.production_companies);
       let date = data?.release_date;
@@ -177,12 +175,12 @@ const MovieOverview = () => {
                   <p style={{ color: "black" }}>{data?.status}</p>
                 </div>
                 <div>
-                  <b style={{ color: "black" }}>original_name</b>
-                  <p style={{ color: "black" }}>{data?.original_title}</p>
+                  <b style={{ color: "black" }}>original name</b>
+                  <p style={{ color: "black" }}>{data?.original_name}</p>
                 </div>
                 <div>
-                  <b style={{ color: "black" }}>relase data</b>
-                  <p style={{ color: "black" }}>{data?.release_date}</p>
+                  <b style={{ color: "black" }}>first air data</b>
+                  <p style={{ color: "black" }}>{data?.first_air_date}</p>
                 </div>
                 <div>
                   <b style={{ color: "black" }}>average vote</b>
@@ -265,11 +263,9 @@ const MovieOverview = () => {
           </Container>
         </div>
         <br />
-        {/* white screen end */}
       </div>
-      {/* <Footer /> */}
     </div>
   );
 };
 
-export default MovieOverview;
+export default TvOverView;

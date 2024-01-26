@@ -38,7 +38,8 @@ import MovieOverview from "views/page/Movie/MovieOver";
 import ScrollToTop from "ScrollToTop";
 import App from "views/App";
 import { router } from "./router";
-
+// import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+// import "@fortawesome/fontawesome-free/css/all.min.css";
 const token = localStorage.getItem("token");
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // dotenv.config({path:''})

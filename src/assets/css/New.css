@@ -485,7 +485,7 @@ max-height: 40vh;
 
 .collection {
   /* background-color: #48abe08a; */
-  background-image: linear-gradient(315deg, #48abe053 0%, #76e6fc6d 74%);
+  background-image: linear-gradient(315deg, #01283c6f 0%, #20485077 74%);
   width: 100%;
   height: 100%;
   border-radius: 15px;
@@ -644,4 +644,10 @@ body, button {
   margin: 0;
   padding: 0;
   font-size: 2.2rem;
+}
+.editpro i {
+  transition: transform .2s
+}
+.editpro i :hover{
+  transform: scale(1)
 }

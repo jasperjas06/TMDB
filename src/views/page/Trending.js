@@ -63,7 +63,7 @@ function Trending(props) {
       })
       .then((res) => {
         if (res) {
-          setTimeout(()=>console.log("hello jas"),3000)
+          // setTimeout(()=>console.log("hello jas"),3000)
           let _ids = res.data.results.map((i) => {
             return i.id;
           });
@@ -82,7 +82,7 @@ function Trending(props) {
   };
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_KEY);
+    // console.log(process.env.REACT_APP_KEY);
     getData();
     setBgdata(data[0])
   }, [id]);
@@ -122,7 +122,7 @@ function Trending(props) {
             return (
               <img className="slider" style={{maxWidth:"250px", padding:"10px"}} src={`http://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.name} key={item.id} onClick={()=>handlesend(item)}/>
             );
-          })}
+          })} 
         </div>
         {!scrolEnd && (
           <IconButton

@@ -1,211 +1,103 @@
-/*!
-
-=========================================================
-* BLK Design System React - v1.2.2
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React, { useState } from "react";
-import classnames from "classnames";
-// javascript plugin used to create scrollbars on windows
-import PerfectScrollbar from "perfect-scrollbar";
-import "../../assets/css/New.css"
-// reactstrap components
-import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  Label,
-  FormGroup,
-  Form,
-  Input,
-  FormText,
-  NavItem,
-  NavLink,
-  Nav,
-  Table,
-  TabContent,
-  TabPane,
-  Container,
-  Row,
-  Col,
-  UncontrolledTooltip,
-  UncontrolledCarousel,
-  Modal
-} from "reactstrap";
-
-// core components
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
-import Footer from "components/Footer/Footer.js";
 import IndexNavbar from "components/Navbars/IndexNavbar";
-import ImageUpload from "./UploadImg";
-import {Cloudinary} from "@cloudinary/url-gen";
-import JavaScript from "views/IndexSections/JavaScript";
-import Notifications from "views/IndexSections/Notifications";
-import { ModalBody, ModalFooter, ModalHeader } from "react-bootstrap";
-
-const carouselItems = [
-  {
-    src: require("assets/img/denys.jpg"),
-    altText: "Slide 1",
-    caption: "Big City Life, United States",
-  },
-  {
-    src: require("assets/img/fabien-bazanegue.jpg"),
-    altText: "Slide 2",
-    caption: "Somewhere Beyond, United States",
-  },
-  {
-    src: require("assets/img/mark-finn.jpg"),
-    altText: "Slide 3",
-    caption: "Stocks, United States",
-  },
-];
-
-let ps = null;
-
-export default function ProfilePage() {
-  const [tabs, setTabs] = React.useState(1);
-  React.useEffect(() => {
-    if (navigator.platform.indexOf("Win") > -1) {
-      document.documentElement.className += " perfect-scrollbar-on";
-      document.documentElement.classList.remove("perfect-scrollbar-off");
-      let tables = document.querySelectorAll(".table-responsive");
-      for (let i = 0; i < tables.length; i++) {
-        ps = new PerfectScrollbar(tables[i]);
+import React, { useEffect } from "react";
+import { Button, Container } from "react-bootstrap";
+import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import '../../assets/css/New.css'
+import { useNavigate } from "react-router-dom";
+const ProfilePage = () => {
+  const navigate = useNavigate();
+  const [data,setData] = React.useState({});
+  const getUser = async({id}) =>{
+    await axios.get(`http://localhost:2000/api/getuser?id=${id}`)
+    .then((res)=>{
+      // console.log(res?.data?.data); 
+      if(res.data.data){
+        setData(res.data.data)
       }
+    })
+    .catch((err)=>{
+      console.log(err.message);
+    })
+  }
+  useEffect(()=>{
+    const token = jwtDecode(localStorage.getItem("token"))
+    if(token){
+      // console.log(token);
+      let id = token?.id
+      getUser({id});
     }
-    document.body.classList.toggle("profile-page");
-    // Specify how to clean up after this effect:
-    return function cleanup() {
-      if (navigator.platform.indexOf("Win") > -1) {
-        ps.destroy();
-        document.documentElement.className += " perfect-scrollbar-off";
-        document.documentElement.classList.remove("perfect-scrollbar-on");
-      }
-      document.body.classList.toggle("profile-page");
-    };
-  }, []);
-  const [fileInputState, setFileInputState] = useState('');
-    const [previewSource, setPreviewSource] = useState('');
-    const [selectedFile, setSelectedFile] = useState();
-    const [successMsg, setSuccessMsg] = useState('');
-    const [errMsg, setErrMsg] = useState('');
-    const [open, setOpen] = useState(false);
-    const handleFileInputChange = (e) => {
-        const file = e.target.files[0];
-        previewFile(file);
-        setSelectedFile(file);
-        setFileInputState(e.target.value);
-    };
-
-    const previewFile = (file) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setPreviewSource(reader.result);
-        };
-    };
-    const toggle = () => setOpen(!open);
-    const handleSubmitFile = (e) => {
-        e.preventDefault();
-        if (!selectedFile) return;
-        const reader = new FileReader();
-        reader.readAsDataURL(selectedFile);
-        reader.onloadend = () => {
-            uploadImage(reader.result);
-        };
-        reader.onerror = () => {
-            console.error('AHHHHHHHH!!');
-            setErrMsg('something went wrong!');
-        };
-    };
-
-    const uploadImage = async (base64EncodedImage) => {
-        try {
-            await fetch('http://localhost:2000/api/update/img', {
-                method: 'POST',
-                body: JSON.stringify({ data: base64EncodedImage }),
-                headers: { 'Content-Type': 'application/json' },
-            });
-            setFileInputState('');
-            setPreviewSource('');
-            setSuccessMsg('Image uploaded successfully');
-        } catch (err) {
-            console.error(err);
-            setErrMsg('Something went wrong!');
-        }
-    };
+  },[])
   return (
     <>
-      {/* <ExamplesNavbar /> */}
       <IndexNavbar profile={true} />
       <div className="wrapper">
-      
-        <div className="page-header">
-        <div>
-        <Modal isOpen={open} toggle={toggle} fullscreen>
-        <ModalHeader toggle={toggle}>Edit Profile</ModalHeader>
-        <ModalBody>
-          <ImageUpload/>
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={toggle}>
-            Do Something
-          </Button>{' '}
-          <Button color="secondary" onClick={toggle}>
-            Cancel
-          </Button>
-        </ModalFooter>
-      </Modal>
-        </div>
-        <Container className="align-items-center">
-          
-            <Row>
-              
-              <Col className="ml-auto mr-auto" lg="8" md="8">
-                <Card className="card-coin card-plain">
-                  <CardHeader>
-                    
-                    <img
-                      alt="..."
-                      className=""
-                      src={require("assets/img/mike.jpg")}
-                      style={{height:"200px",width:"200px",borderRadius:"50%"}}
-                    />
-                    <div>
-
-                    {/* <img alt="edit" src={require("assets/img/draw.png")} className="edit-btn"/> */}
-                    </div>
-                    {/* <h4 className="title">Jasper  </h4> */}
-                  </CardHeader>
-                  <CardBody>
-                  <div>
-                  <h1>Jasper</h1>
+        <div style={{marginTop:"80px"}}>
+        <Container>
+        <div >
+      <Container >
+        <Container >
+        <br/>
+        <br/>
+        <MDBCard style={{ borderRadius: '15px' }}>
+              <MDBCardBody className="text-center">
+                <div className="mt-3 mb-4">
+                  <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                    className="rounded-circle" fluid style={{ width: '100px' }} />
+                </div>
+                <MDBTypography tag="h4">{data?.username}</MDBTypography>
+                {/* <MDBTypography tag="h4">{data?.name}</MDBTypography> */}
+                <MDBCardText className="text-muted mb-4">
+                  {data?.phone} <span className="mx-2">|</span> <a href="#!">{data?.email}</a>
+                </MDBCardText>
+                <div className="mb-4 pb-2">
+                <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+                <Button>
+                    <MDBIcon  fab icon="facebook" size="lg" />
+                </Button>
+                </a>
+                <a href="https://twitter.com/" target="_blank" rel="noreferrer">
+                <Button>
+                    <MDBIcon  fab icon="twitter" size="lg" />
+                </Button>
+                </a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+                <Button>
+                    <MDBIcon  fab icon="instagram" size="lg" />
+                </Button>
+                </a>
+                  
+                </div>
+                {/* <Button rounded size="lg">
+                <i  onClick={()=>console.log("edit")} className='fas fa-pencil-alt' style={{fontSize:'24px'}}></i>
+                edit
+                </Button> */}
+                <div className="">
+                  {/* <div>
+                    <MDBCardText className="mb-1 h5">8471</MDBCardText>
+                    <MDBCardText className="small text-muted mb-0">Wallets Balance</MDBCardText>
+                  </div> */}
+                  {/* <div className="px-3">
+                    <MDBCardText className="mb-1 h5">8512</MDBCardText>
+                    <MDBCardText className="small text-muted mb-0">Followers</MDBCardText>
+                  </div> */}
+                  <div title="edit profile" className="editpro" style={{float:"right"}}>
+                  <Button>Edit</Button>
+                    {/* <i  onClick={()=>console.log("edit")} className='fas fa-pencil-alt' style={{fontSize:'24px'}}></i> */}
+                    {/* <MDBCardText className="small text-muted mb-0">edit your profile</MDBCardText> */}
                   </div>
-                    
-                  <p style={{float:'right'}} onClick={toggle}>Edit</p>
-                  </CardBody>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
-          {/* <Notifications/> */}
-          {/* <JavaScript/> */}
-
+                </div>
+              </MDBCardBody>
+            </MDBCard>
+        </Container>
+      </Container>
+    </div>
+        </Container>
         </div>
       </div>
     </>
   );
-}
+};
+
+export default ProfilePage;

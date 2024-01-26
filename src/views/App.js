@@ -23,7 +23,7 @@ function App() {
     <div>
     <AuthContext.Provider value={{token,setToken}}>
       {
-        token ? navigate('/home-page') : navigate('/landing-page')
+        token ? <Index/> : <LandingPage/>
       }
       </AuthContext.Provider>
     </div>
