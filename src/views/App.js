@@ -12,7 +12,7 @@ function App() {
   const navigate = useNavigate()
     useEffect(()=>{
       const getToken =()=>{
-        const appToken = localStorage.getItem("token");
+        const appToken = localStorage.getItem("tmdb-aut-token");
         if(appToken){
           setToken(appToken)
         }

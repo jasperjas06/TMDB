@@ -1,8 +1,17 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 const TvSearch = ({search}) => {
     const [data,setData] = React.useState([])
+    const navigate = useNavigate()
+    const handleOpen = ({item}) =>{
+      console.log(item,"item");
+      if(item?.name && item?.id){
+
+          navigate(`/view-page/${item?.id}/${item?.title}`)
+      }
+  }
     useEffect(()=>{
         const options = {
             method: 'GET',
@@ -24,8 +33,8 @@ const TvSearch = ({search}) => {
         {
             data.map((item,index)=>{
                 return(
-                <div key={index}>
-                    <img src={`https://image.tmdb.org/t/p/w500/${item?.poster_path}`} alt={item.title} style={{height:"400px", width:"250px"}}/>
+                <div key={index} onClick={()=>handleOpen({item})}>
+                    <img src={`https://image.tmdb.org/t/p/w500/${item?.poster_path}`} alt={item.title} style={{height:"400px", width:"250px"}} />
                 </div>
                 )
             })  

@@ -22,7 +22,7 @@ const ProfilePage = () => {
     })
   }
   useEffect(()=>{
-    const token = jwtDecode(localStorage.getItem("token"))
+    const token = jwtDecode(JSON.stringify(localStorage.getItem("tmdb-aut-token")))
     if(token){
       // console.log(token);
       let id = token?.id
@@ -30,7 +30,7 @@ const ProfilePage = () => {
     }
   },[])
   return (
-    <>
+    <> 
       <IndexNavbar profile={true} />
       <div className="wrapper">
         <div style={{marginTop:"80px"}}>
@@ -40,10 +40,13 @@ const ProfilePage = () => {
         <Container >
         <br/>
         <br/>
+        <br/>
+        <br/>
+        <br/>
         <MDBCard style={{ borderRadius: '15px' }}>
               <MDBCardBody className="text-center">
                 <div className="mt-3 mb-4">
-                  <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                  <MDBCardImage src={data?.profileimg ? data?.profileimg : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"}
                     className="rounded-circle" fluid style={{ width: '100px' }} />
                 </div>
                 <MDBTypography tag="h4">{data?.username}</MDBTypography>
@@ -83,7 +86,7 @@ const ProfilePage = () => {
                     <MDBCardText className="small text-muted mb-0">Followers</MDBCardText>
                   </div> */}
                   <div title="edit profile" className="editpro" style={{float:"right"}}>
-                  <Button>Edit</Button>
+                  <Button onClick={()=>{navigate('/edit-profile')}}>Edit</Button>
                     {/* <i  onClick={()=>console.log("edit")} className='fas fa-pencil-alt' style={{fontSize:'24px'}}></i> */}
                     {/* <MDBCardText className="small text-muted mb-0">edit your profile</MDBCardText> */}
                   </div>

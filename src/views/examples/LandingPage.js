@@ -71,11 +71,13 @@ export default function LandingPage() {
         console.log(email,password);
         await axios.post("http://localhost:2000/api/login",{username:email,password:password})
         .then((res)=>{
-          // console.log(res,"res");
+          console.log(res,"res");
           if(res?.data?.message === "login successful"){
             toast.success(res.data.message)
-            localStorage.setItem("token",res?.data?.token)
-            navigate('/home-page')
+            localStorage.setItem("tmdb-aut-token",JSON.stringify(res?.data?.token))
+            if(JSON.stringify(localStorage.getItem("tmdb-aut-token"))){
+              navigate('/home-page')
+            }
           }
           else{
             toast.error(res.data.message)
