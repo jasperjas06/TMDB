@@ -41,6 +41,7 @@ import Tablet from "components/Body/Tablet";
 import { Container } from "@mui/material";
 import Geners from "./page/Geners";
 import { CNav } from "@coreui/react";
+import Upcoming from "./page/Movie/Upcoming";
 
 export default function Index() {
   React.useEffect(() => {
@@ -59,6 +60,9 @@ export default function Index() {
           
           <Trending />
           <Tablet/>
+          <Container>
+          {/* <Upcoming /> */}
+          </Container>
           {/* <Geners/> */}
           {/* <JavaScript /> */}
           {/* <OnTv /> */}
@@ -74,7 +78,7 @@ export default function Index() {
           <Examples />
           <Download /> */}
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );

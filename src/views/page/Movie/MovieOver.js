@@ -71,7 +71,7 @@ const MovieOverview = () => {
   React.useEffect(() => {
     getData();
     if (data) {
-    //   console.log(data);
+      // console.log(data);
       setMovieName(data?.title);
       setProduction(data?.production_companies);
       let date = data?.release_date;
@@ -79,6 +79,7 @@ const MovieOverview = () => {
     }
   }, [data]);
   return (
+    <>
     <div className="section section-basic">
       <NewNav />
       <div>
@@ -141,7 +142,7 @@ const MovieOverview = () => {
         <div style={{ backgroundColor: "whitesmoke", marginTop: "0px" }}>
           <Container>
             <br />
-            <h2 className="" style={{ color: "black", fontWeight: "700" }}>
+            <h2 className="" id="topcast" style={{ color: "black", fontWeight: "700" }}>
               To Billed Cast
             </h2>
             <center></center>
@@ -194,7 +195,7 @@ const MovieOverview = () => {
 
           <Container>
             <br />
-            <h2 className="" style={{ color: "black", fontWeight: "700" }}>
+            <h2 id="trailer" className="" style={{ color: "black", fontWeight: "700" }}>
               Official Trailer
             </h2>
             <Container>
@@ -214,11 +215,15 @@ const MovieOverview = () => {
           </Container>
           <br />
           <Container>
+          {
+            data?.belongs_to_collection !== null ?(
             <Collection id={id} />
+            ): null
+          }
           </Container>
           <br />
           <Container>
-            <h2 className="" style={{ color: "black", fontWeight: "700" }}>
+            <h2 id="recommen" className="" style={{ color: "black", fontWeight: "700" }}>
               Recommendations
             </h2>
             <Recommendations id={id} name={movieName} />
@@ -232,7 +237,7 @@ const MovieOverview = () => {
           </Container>
           <br />
           <Container>
-            <h2 className="" style={{ color: "black", fontWeight: "700" }}>
+            <h2 className="" id="media" style={{ color: "black", fontWeight: "700" }}>
               Media
             </h2>
             {/* <Container>
@@ -267,8 +272,9 @@ const MovieOverview = () => {
         <br />
         {/* white screen end */}
       </div>
-      {/* <Footer /> */}
     </div>
+      <MovieFooter />
+      </>
   );
 };
 

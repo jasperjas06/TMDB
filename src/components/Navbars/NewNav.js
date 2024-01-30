@@ -123,9 +123,11 @@ export default function NewNav({data}) {
             </Row>
           </div>
           <Nav navbar>
-          <span style={{color:"white",marginRight:"20px"}}>Search</span>
+          <NavLink href="#topcast" style={{color:"white",marginRight:"20px"}}>Cast</NavLink>
+          <NavLink href="#trailer" style={{color:"white",marginRight:"20px"}}>Official Trailer</NavLink>
+          <NavLink href="#recommen" style={{color:"white",marginRight:"20px"}}>Recommendations</NavLink>
             
-          <span style={{color:"white",marginRight:"20px"}}>Profile</span>
+          <NavLink href="#media" style={{color:"white",marginRight:"20px"}}>Media</NavLink>
             
             
             

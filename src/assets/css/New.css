@@ -295,6 +295,12 @@ max-height: 40vh;
   max-height: 80vh; */
   height: 100vh;
 }
+@media screen and (max-width: 984px) {
+  .bg-container {
+    height: 75vh
+  }
+  
+}
 .images-bg{
   background-color: #0b0808;
 }
@@ -650,4 +656,18 @@ body, button {
 }
 .editpro i :hover{
   transform: scale(1)
+}
+
+/* upcoming movies */
+.upcoming-grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  padding: 1rem;
+  /* margin-bottom: 10px; */
+}
+.upcoming-grid img {
+  width: 300px;
+  padding: 20px;
+  margin-top: 30px;
+  margin-left: 50px;
 }

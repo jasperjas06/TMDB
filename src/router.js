@@ -8,6 +8,7 @@ import RegisterPage from "views/examples/RegisterPage";
 import Search from "views/examples/Search";
 import MovieOverview from "views/page/Movie/MovieOver";
 import OverView from "views/page/OverView";
+import Person from "views/page/Person";
 import TvOverView from "views/page/Tv/TvOver";
 
 export const router = createBrowserRouter([
@@ -49,5 +50,6 @@ export const router = createBrowserRouter([
     path: "search-page",
     element: <Search />,
   },
-  { path: "/edit-profile", element: <EditProfile /> }
+  { path: "/edit-profile", element: <EditProfile /> },
+  { path: "/person", element: <Person /> }
 ]);

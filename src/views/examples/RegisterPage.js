@@ -202,7 +202,7 @@ export default function RegisterPage() {
                           <center>
                             <span>
                               Already have an account.{" "}
-                              <a href="book-mark">SignIn</a>
+                              <a href="/">SignIn</a>
                             </span>
                           </center>
                         </FormGroup>

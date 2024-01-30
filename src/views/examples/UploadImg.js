@@ -17,7 +17,7 @@ const ImageUpload = () => {
   // const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState(null);
   const [profile, setProfile] = useState(null);
-  const [data, setData] = useState({});
+  let [data, setData] = useState({});
   const [name, setName] = useState("");
   const [userName, setUserName] = useState("");
   const [phone, setPhone] = useState("");
@@ -129,9 +129,14 @@ const ImageUpload = () => {
         });
       console.log(name,phone,userName,"token");
       // setPreview(decode?.image)
+      if(name === data.name){
+        console.log("name true");
+      }else{
+        console.log("name false");
+      }
     }
     
-  }, [image]); 
+  }, [image,name]); 
 
   return (
     <div>
@@ -189,13 +194,14 @@ const ImageUpload = () => {
                 htmlFor="my-input"
                 sx={{ color: "white" }}
               ></InputLabel>
-              <Input
+              {/* <Input
                 value={name}
                 id="my-input"
                 aria-describedby="my-helper-text"
                 sx={{ color: "white" }}
                 onChange={(e) => setName(e.target.value)}
-              />
+              /> */}
+              <input value={data.name} onChange={(e)=>setUpdateName(e.target.value)} />
               {/* <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText> */}
             </FormControl>
           </Col>

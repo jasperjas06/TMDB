@@ -15,7 +15,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useContext } from "react";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import React, { useContext, useState } from "react";
 import { ButtonGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 // reactstrap components
@@ -40,11 +42,34 @@ import AuthContext from "views/Auth";
 
 export default function IndexNavbar({profile}) {
   // const [token,setToken] = useContext(AuthContext)
+  const [profileimg,setProfileimg] = useState("")
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
   const navigate = useNavigate();
+  let token = JSON.stringify(localStorage.getItem("tmdb-aut-token"));
+  // console.log(token);
+  const decoded = jwtDecode(token)
   React.useEffect(() => {
+    const getProfile = async () => {
+      try {
+        await axios.get(`http://localhost:2000/api/getuser?id=${decoded?.id}`)
+      .then((res)=>{
+        // console.log(res.data.data);
+        if(res.data.data){
+          setProfileimg(res.data.data?.profileimg)
+        }
+      }).catch((err)=>{
+        console.log(err);
+      })
+      } catch (error) {
+        console.log(error.message);
+      }
+      
+    }
+    if(decoded){
+      getProfile()
+    }
     window.addEventListener("scroll", changeColor);
     return function cleanup() {
       window.removeEventListener("scroll", changeColor);
@@ -130,7 +155,8 @@ export default function IndexNavbar({profile}) {
               </Col>
             </Row>
           </div>
-          <Nav navbar>
+          <div style={{display:"flex", justifyContent:"center"}}>
+          <Nav navbar >
           {
             profile ? (
                 <NavLink href="/home-page" style={{color:"white",marginRight:"20px"}}>Home</NavLink>
@@ -143,17 +169,21 @@ export default function IndexNavbar({profile}) {
           {
             !profile ? (
               <NavLink href="/profile-page">
-          <span style={{color:"white",marginRight:"20px"}}>Profile</span>
+          {/* <span style={{color:"white",marginRight:"20px"}}>Profile</span> */}
+          <img src={profileimg} alt="profile" style={{height:"30px",width:"30px",borderRadius:"50%",position:"absolute"}} />
           </NavLink>
             ) : null
           }
           
             
-          <NavLink onClick={logout}>
-          <span style={{color:"white",marginRight:"20px"}}>Logout</span>
-          </NavLink>
+          { profile &&
+            <NavLink onClick={logout} title="logout">
+            <img style={{height:"20px", width:"20px"}} src={require("assets/img/logout.png")} alt="logout"/>
+          {/* <span style={{color:"white",marginRight:"20px"}}>Logout</span> */}
+          </NavLink>}
             
           </Nav>
+          </div>
         </Collapse>
       </Container>
     </Navbar>

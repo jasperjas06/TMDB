@@ -14,19 +14,14 @@ const MovieFooter = ({data}) => {
         console.log(data,"data");
       },[])
   return (
-    <footer className="footer">
-    <Container className='production'>
-      {
-        data?.map((item,index)=>{
-          return(
-            <div key={index}>
-              <img src={`http://image.tmdb.org/t/p/w500/${item?.logo_path}`} alt="" className='production-img'/>
-            </div>
-          )
-        })
-      }
-      </Container>
-    </footer>
+    <footer className="bg-body-tertiary text-center text-lg-start">
+  
+  <div className="text-center p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.05)"}}>
+    © 2020 Copyright:
+    <a class="text-body" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+  
+</footer>
   )
 }
 

@@ -12,7 +12,7 @@ const Collection = ({ id }) => {
       Authorization: `Bearer ${process.env.REACT_APP_KEY}`,
     },
   };
-  const imageURL = `https://media.themoviedb.org/t/p/w1440_and_h320_multi_faces/5iidzov8DrsSyZdefeo7jBLDNUW.jpg`
+  // const imageURL = `https://media.themoviedb.org/t/p/w1440_and_h320_multi_faces/5iidzov8DrsSyZdefeo7jBLDNUW.jpg`
   // const imageURL = `https://image.tmdb.org/t/p/original${img}`;
   useEffect(() => {
     // console.log(id);
@@ -22,28 +22,40 @@ const Collection = ({ id }) => {
         // console.log(response,"response");
         if (response?.belongs_to_collection) {
           setCollection(response?.belongs_to_collection);
-          setImg(response?.belongs_to_collection?.backdrop_path);
+          const imageURL = `https://media.themoviedb.org/t/p/w1440_and_h320_multi_faces${response?.belongs_to_collection?.backdrop_path}`
+          setImg(imageURL);
           //   return response.json();
         } else {
           throw new Error("Something went wrong ...");
         }
       })
       .catch((err) => console.error(err));
-  }, [id]);
-  // console.log(`url(https://media.themoviedb.org/t/p/w1440_and_h320_multi_faces${img})`)
+  }, [id, img, options]);
+  // console.log(img)
+
+
   
   const style = {
     height: "100%",
     width: "100%",
-    backgroundImage: `url(https://media.themoviedb.org/t/p/w1440_and_h320_multi_faces${img})`,
+    backgroundImage: `url(${img})`,
     backgroundSize: "cover",
     backgroundPosition: "50% 50%",
     borderRadius: "15px",
 
   };
+  // const style2 = {
+  //   height: "100%",
+  //   width: "100%",
+  //   backgroundImage: `url(https://media.themoviedb.org/t/p/w1440_and_h320_multi_faces/5iidzov8DrsSyZdefeo7jBLDNUW.jpg)`,
+  //   backgroundSize: "cover",
+  //   backgroundPosition: "50% 50%",
+  //   borderRadius: "15px",
+
+  // };
   return (
     <>
-    {collection?(
+    {collection?.backdrop_path ? (
     <div style={style}>
     <div className="collection">
     <Container style={{padding:"40px"}}>

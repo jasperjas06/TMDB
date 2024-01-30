@@ -9,12 +9,11 @@ import {
   OutlinedInput,
 } from "@mui/material";
 import React from "react";
-import { Container } from "reactstrap";
+import { Button, Container } from "reactstrap";
 import SearchIcon from "@mui/icons-material/Search";
 import "../../assets/css/New.css";
 import MovieSearch from "./Search/Movie";
 import TvSearch from "./Search/Tv";
-import { Button } from "react-bootstrap";
 import { Router, useNavigate } from "react-router-dom";
 
 const Search = () => {
@@ -24,10 +23,10 @@ const Search = () => {
   // console.log(value);
   return (
     <div style={{ padding: "20px" }}>
+        <Button onClick={()=>navigate(-1)}>Back</Button>
       <Container>
         <Container>
         {/* <h1>Search</h1> */}
-        <Button onClick={()=>navigate(-1)}>Back</Button>
         </Container>
 
         <Container>
@@ -81,12 +80,13 @@ const Search = () => {
           {
             value === 0 ? (
               <Container>
-                <h1>Movie</h1>
+                {/* <h1>Movie</h1> */}
                 <MovieSearch search={search}/>
+                {/* <div><h5>there is no limits to find who you realy are!</h5></div> */}
               </Container>
             ) : (
               <Container>
-                <h1>Tv&Series</h1>
+                {/* <h1>Tv&Series</h1> */}
                 <TvSearch search={search}/>
               </Container>
             )
