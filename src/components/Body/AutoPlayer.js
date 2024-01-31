@@ -7,9 +7,9 @@ const AutoPlayer = ({id}) => {
   // let id = props
   const [data,setData] = useState({})
   const getVid = () =>{
-    console.log(id,"inside");
+    // console.log(id,"inside");
 }
-  console.log(id,"id from vid");
+  // console.log(id,"id from vid");
     const opts = {
         height: '590',
         width: '100%',
@@ -40,7 +40,7 @@ const AutoPlayer = ({id}) => {
                   return i
                 }
               })
-              console.log(data,"video");
+              // console.log(data,"video");
               setData(video)
             } 
             )

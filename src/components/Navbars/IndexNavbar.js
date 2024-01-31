@@ -53,7 +53,7 @@ export default function IndexNavbar({profile}) {
   React.useEffect(() => {
     const getProfile = async () => {
       try {
-        await axios.get(`http://localhost:2000/api/getuser?id=${decoded?.id}`)
+        await axios.get(`https://bookmark-server-d30v.onrender.com/api/getuser?id=${decoded?.id}`)
       .then((res)=>{
         // console.log(res.data.data);
         if(res.data.data){
@@ -170,7 +170,7 @@ export default function IndexNavbar({profile}) {
             !profile ? (
               <NavLink href="/profile-page">
           {/* <span style={{color:"white",marginRight:"20px"}}>Profile</span> */}
-          <img src={profileimg} alt="profile" style={{height:"30px",width:"30px",borderRadius:"50%",position:"absolute"}} />
+          <img src={profileimg? profileimg :"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"} alt="profile" style={{height:"30px",width:"30px",borderRadius:"50%",position:"absolute"}} />
           </NavLink>
             ) : null
           }

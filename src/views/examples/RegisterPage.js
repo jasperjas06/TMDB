@@ -43,6 +43,7 @@ import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+// import { responsive } from "@cloudinary/react";
 
 export default function RegisterPage() {
   const [squares1to6, setSquares1to6] = React.useState("");
@@ -50,37 +51,57 @@ export default function RegisterPage() {
   const [fullNameFocus, setFullNameFocus] = React.useState(false);
   const [emailFocus, setEmailFocus] = React.useState(false);
   const [passwordFocus, setPasswordFocus] = React.useState(false);
+  const [errMessage, setErrMessage] = React.useState("")
+  const [successMessage, setSuccessMessage] = React.useState("")
   const [email, setEmail] = React.useState("");
   const [name, setName] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const register = () =>{
-    const Process = async( ) =>{
-      const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/users"
-      );
-      console.log({ response });
-      // toast.promise(response, {
-      //   loading: "Process",
-      //   error: "error occurs in data",
-      //   success: "get data successfully...."
-      // })
-      return response;
+  const register = async() =>{
+    let data = {
+      name:name,
+      email:email,
+      password:password
     }
-    const callFunction = Process();
-    toast.promise(callFunction, {
-      loading: "Process",
-      error: "error occurs in data",
-      success: "get data successfully...."
-    })
-    console.log(callFunction.finally(""), "callFunction");
+      const response = await axios.post(
+        "https://bookmark-server-d30v.onrender.com/api/create",{name,email,password}
+      ).then((response)=>{
+        if(response.status === 200){
+          setSuccessMessage(response.data.message)
+          alert("kindly login ")
+          window.location.href = "/"
+          return response.data.message;
+        }
+        else{
+          setSuccessMessage(response.data)
+          // console.log(response.data,"else");
+          return response.data;
+        }
+      })
+      .catch((error)=>{
+        console.log(error,"catch");
+        setErrMessage(error.message)
+        return error;
+      })
+      // console.log({ response });
+      return response;
+    
+    
   }
+  const handleSubmit = () =>{
+    if (name === "" || email === "" || password === "") {
+      toast.error("Please fill all the fields");
+    } else {
+      // console.log(name,email,password);
+      const callFunction= register();
+ toast.promise(callFunction, {
+  loading: "creating your account...",
+  error: errMessage,
+  success: successMessage
+});
+    }
+  }
+  
   React.useEffect(() => {
-    // const callFunction= register();
-  //  toast.promise(register, {
-  //   loading: "Process",
-  //   error: "error occurs in data",
-  //   success: "get data successfully...."
-  // });
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", followCursor);
     // Specify how to clean up after this effect:
@@ -106,14 +127,6 @@ export default function RegisterPage() {
         posY * -0.02 +
         "deg)"
     );
-  };
-  const handleSubmit = () => {
-    if (name === "" || email === "" || password === "") {
-      toast.error("Please fill all the fields");
-    } else {
-      setPassword("");
-      setEmail("");
-    }
   };
   return (
     <>
@@ -209,7 +222,7 @@ export default function RegisterPage() {
                       </Form>
                     </CardBody>
                     <CardFooter>
-                      <Button onClick={register} className="btn-round" color="primary" size="lg">
+                      <Button onClick={handleSubmit} className="btn-round" color="primary" size="lg">
                         Get Started
                       </Button>
                     </CardFooter>

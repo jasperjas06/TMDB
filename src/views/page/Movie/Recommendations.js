@@ -1,9 +1,12 @@
 
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Recommendations = ({id,name}) => {
     const [data,setData] = useState([])
     const [req,setReq] = useState(true)
+    const navigate = useNavigate()
+    
     const options = {
         method: "GET",
         headers: {
@@ -40,8 +43,10 @@ const Recommendations = ({id,name}) => {
       <div className='recommendations'>
       {data?.map((item,index)=>{
         return(
-                <img key={index} src={`http://image.tmdb.org/t/p/w500${item.backdrop_path}`} className='rec_img' alt={item.title} />
-           
+          <>
+                <img key={index} title={item.title} src={`http://image.tmdb.org/t/p/w500${item.backdrop_path}`} className='rec_img' alt={item.title} onClick={()=>{navigate(`/recommendation/${item?.id}/${item?.title}`)}} />
+                {/* <p>{item.title}</p> */}
+                </>
             )
       })}
     </div>

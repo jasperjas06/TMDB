@@ -1,16 +1,15 @@
+/* eslint-disable no-mixed-operators */
 import React, { useEffect, useState } from "react";
 // import { Image } from "cloudinary-react";
 // import { Cloudinary } from "@cloudinary/url-gen";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { Col, Container, Row } from "reactstrap";
-import {
-  FormControl,
-  FormHelperText,
-  Input,
-  InputLabel,
-} from "@mui/material";
+// import ReCAPTCHA from "react-google-recaptcha";
+import Recaptcha from "react-recaptcha";
+import { FormControl, FormHelperText, Input, InputLabel } from "@mui/material";
 import { Button } from "react-bootstrap";
+import toast, { Toaster } from "react-hot-toast";
 const ImageUpload = () => {
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState("");
@@ -25,6 +24,8 @@ const ImageUpload = () => {
   const [updateuserName, setUpdateUserName] = useState("");
   const [updatephone, setUpdatePhone] = useState("");
   const [button, setButton] = useState(true);
+  const [buttonFun, setButtonFun] = useState(true);
+
   const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
 
   const handleImageChange = () => {
@@ -40,7 +41,7 @@ const ImageUpload = () => {
         formData
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.status === 200) {
           setUrl(res?.data?.secure_url);
           // setLoading(false);
@@ -50,67 +51,74 @@ const ImageUpload = () => {
         console.log(err);
       });
   };
+  const togglebutton = () => {
+    setButtonFun(!buttonFun);
+    // console.log(name, userName, phone, buttonFun);
+    if (buttonFun) {
+      if (url !== "") {
+        setButton(false);
+      }
+      else if(name !== "" || userName !== "" || phone !== "" && name !== data.name || userName !== data.username || phone !== data.phone){
+        setButton(false);
+      }
+    }else{
+      setButton(true);
+    }
+  };
   const update = async () => {
     try {
-      
       let token = JSON.stringify(localStorage.getItem("tmdb-aut-token"));
       if (token) {
         let decode = jwtDecode(token);
         let id = decode?.id;
-        let updatedata = {}
-        
-        if (
-          data.name !== name ||
-          data.username !== userName ||
-          data.phone !== phone ||
-          data.profileimg !== url
-        ) {
-          updatedata = {
-            name:name,
-            username: userName,
-            phone:phone,
-            profileimg: url,
-          };
+        let updatedata = {};
+        if(name || userName || phone || url){
+          if (name !== "" && name !== data.name) {
+            updatedata.name = name;
+          }
+          if (userName !== "" && userName !== data.username) {
+            updatedata.username = userName;
+          }
+          if (phone !== "" && phone !== data.phone) {
+            updatedata.phone = phone;
+          }
+          if (url !== "") {
+            updatedata.profileimg = url;
+          }
         }
-        // console.log(updatedata, "updatedata");
+
+        
         if (Object.keys(updatedata).length !== 0) {
+          console.log(updatedata, "updatedata");
           await axios
-            .post(`http://localhost:2000/api/update?id=${id}`, updatedata)
+            .post(`https://bookmark-server-d30v.onrender.com/api/update?id=${id}`, updatedata)
             .then((res) => {
-              console.log(res);
+              if(res?.data){
+              toast.success("updated successfully");
+              }
             })
             .catch((err) => {
-              console.log(err);
+              toast.error("something went wrong");
+              // console.log(err);
             });
         } else {
-          alert("no data to update");
+          toast("no data to update");
+          
         }
       }
     } catch (error) {}
   };
+
   useEffect(() => {
     if (image !== null) {
       handleImageChange();
-      
     }
-    if(url !== ""){
-      setButton(false)
-    }else{
-      if(name !== "undefined"){
-        console.log(name,data?.name); 
-      }
-      // if(data.name !== name ||
-      //   data.username !== userName ||
-      //   data.phone !== phone ||
-      //   data.profileimg !== url){
-      //     setButton(false)
-      //   }
-    }
+
     let token = JSON.stringify(localStorage.getItem("tmdb-aut-token"));
     if (token) {
       let decode = jwtDecode(token);
       axios
-        .get(`http://localhost:2000/api/getuser?id=${decode?.id}`)
+        .get(`https://bookmark-server-d30v.onrender.com/api/getuser?id=${decode?.id}`)
         .then((res) => {
           if (res?.data?.data) {
             setData(res?.data?.data);
@@ -127,16 +135,8 @@ const ImageUpload = () => {
         .catch((err) => {
           console.log(err, "err");
         });
-      console.log(name,phone,userName,"token");
-      // setPreview(decode?.image)
-      if(name === data.name){
-        console.log("name true");
-      }else{
-        console.log("name false");
-      }
     }
-    
-  }, [image,name]); 
+  }, [image]);
 
   return (
     <div>
@@ -167,21 +167,6 @@ const ImageUpload = () => {
             />
           </header>
           <div className="flex justify-end pb-8 pt-6 gap-4"></div>
-          {/* {loading ? (
-          <div className="flex items-center justify-center gap-2">
-            <div className="border-t-transparent border-solid animate-spin rounded-full border-blue-400 border-4 h-6 w-6"></div>
-            <span>Processing...</span>
-          </div>
-        ) : (
-          url && (
-            <div className="pb-8 pt-4">
-              <Image
-                cloudName={process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}
-                publicId={url}
-              />
-            </div>
-          )
-        )} */}
         </div>
       </div>
 
@@ -190,18 +175,22 @@ const ImageUpload = () => {
         <Row>
           <Col md={4}>
             <FormControl>
-              <InputLabel
+              {/* {
+              !updatename ?(<InputLabel
                 htmlFor="my-input"
                 sx={{ color: "white" }}
-              ></InputLabel>
-              {/* <Input
+              >{data?.name}</InputLabel>) : <InputLabel></InputLabel>
+            } */}
+
+              <Input
                 value={name}
                 id="my-input"
+                placeholder="full name"
                 aria-describedby="my-helper-text"
                 sx={{ color: "white" }}
                 onChange={(e) => setName(e.target.value)}
-              /> */}
-              <input value={data.name} onChange={(e)=>setUpdateName(e.target.value)} />
+              />
+              {/* <input value={data.name} onChange={(e)=>setUpdateName(e.target.value)} /> */}
               {/* <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText> */}
             </FormControl>
           </Col>
@@ -228,13 +217,14 @@ const ImageUpload = () => {
         <Row>
           <Col md={4}>
             <FormControl>
-              <InputLabel
+              {/* {!updateuserName?(<InputLabel
                 htmlFor="my-input"
                 sx={{ color: "white" }}
-              ></InputLabel>
+              >{data?.username}</InputLabel>):(<InputLabel></InputLabel>)} */}
               <Input
                 value={userName}
                 id="my-input"
+                placeholder="user namex"
                 aria-describedby="my-helper-text"
                 sx={{ color: "white" }}
                 onChange={(e) => setUserName(e.target.value)}
@@ -244,13 +234,13 @@ const ImageUpload = () => {
           </Col>
           <Col md={4}>
             <FormControl>
-              <InputLabel
-                htmlFor="my-input"
-                sx={{ color: "white" }}
-              ></InputLabel>
+              {/* {
+                !updatephone?(<InputLabel sx={{color:"white"}}>{data.phone? data.phone : "phone number"}</InputLabel>):<InputLabel ></InputLabel>
+              } */}
               <Input
                 value={phone}
                 id="my-input"
+                placeholder="phone number"
                 aria-describedby="my-helper-text"
                 sx={{ color: "white" }}
                 onChange={(e) => setPhone(e.target.value)}
@@ -260,17 +250,37 @@ const ImageUpload = () => {
           </Col>
           <br />
           <Col md={6}>
+            <div
+              style={{
+                display: "flex",
+                padding: "10px",
+                justifyContent: "center",
+              }}
+            >
+              
+            </div>
             <Container>
-              <Button disabled={button} style={{ float: "right", marginTop: "30px" }} onClick={update}>
+            <input type="checkbox" onClick={togglebutton} />
+              <InputLabel sx={{ marginLeft: "5px", color:"white" }}>
+                confirm changes
+              </InputLabel>
+              <Button
+                disabled={button}
+                style={{ float: "right", marginTop: "30px" }}
+                onClick={update}
+              >
                 Save
               </Button>
             </Container>
           </Col>
         </Row>
       </Container>
-      {console.log(name,phone,userName,"log")}
+      {/* {console.log(updatename, updatephone, updateuserName, "log")} */}
+      <Toaster/>
     </div>
   );
 };
 
 export default ImageUpload;
+
+// 6LcZuWEpAAAAALG4qcS_c4yV7cDDD52t8EMucixi 6LcZuWEpAAAAAEHG1Du8t6C9wlU2DvMVbF-nheWO

@@ -7,6 +7,7 @@ import ProfilePage from "views/examples/ProfilePage";
 import RegisterPage from "views/examples/RegisterPage";
 import Search from "views/examples/Search";
 import MovieOverview from "views/page/Movie/MovieOver";
+import RecomOverView from "views/page/Movie/RecommOverview";
 import OverView from "views/page/OverView";
 import Person from "views/page/Person";
 import TvOverView from "views/page/Tv/TvOver";
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
   {
     path: "/Movie/:id/:name",
     element: <MovieOverview />,
+  },
+  {
+    path: "/recommendation/:id/:name",
+    element: <RecomOverView />,
   },
   {
     path: "search-page",

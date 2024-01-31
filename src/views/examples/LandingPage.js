@@ -68,10 +68,10 @@ export default function LandingPage() {
       }
       else{
         // navigate('/home-page')
-        console.log(email,password);
-        await axios.post("http://localhost:2000/api/login",{username:email,password:password})
+        // console.log(email,password);
+        await axios.post("https://bookmark-server-d30v.onrender.com/api/login",{username:email,password:password})
         .then((res)=>{
-          console.log(res,"res");
+          // console.log(res,"res");
           if(res?.data?.message === "login successful"){
             toast.success(res.data.message)
             localStorage.setItem("tmdb-aut-token",JSON.stringify(res?.data?.token))

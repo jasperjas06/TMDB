@@ -76,7 +76,7 @@ export default function LoginPage() {
     );
   };
   const handleSubmit = () =>{
-    console.log(emailFocus,passwordFocus);
+    // console.log(emailFocus,passwordFocus);
   }
   return (
     <>

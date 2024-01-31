@@ -6,7 +6,7 @@ const TvSearch = ({search}) => {
     const [data,setData] = React.useState([])
     const navigate = useNavigate()
     const handleOpen = ({item}) =>{
-      console.log(item,"item");
+      // console.log(item,"item");
       if(item?.name && item?.id){
 
           navigate(`/view-page/${item?.id}/${item?.title}`)

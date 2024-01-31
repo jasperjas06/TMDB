@@ -1,10 +1,12 @@
 // import { Button } from "@coreui/coreui";
+import { Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import { Button, Container } from "reactstrap";
+import { Button, Container, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 
 const Collection = ({ id }) => {
   const [img, setImg] = React.useState("");
   const [collection, setCollection] = React.useState({});
+  const [open,setOpen] = React.useState(false);
   const options = {
     method: "GET",
     headers: {
@@ -12,6 +14,14 @@ const Collection = ({ id }) => {
       Authorization: `Bearer ${process.env.REACT_APP_KEY}`,
     },
   };
+  const toggle = () => {
+    // fetch(`https://api.themoviedb.org/3/search/collection?query=${id}&include_adult=false&language=en-US&page=1`, options)
+    // .then(response => response.json())
+    // .then(response => console.log(response))
+    // .catch(err => console.error(err));
+    setOpen(!open)
+    
+  }
   const imageURL = `https://media.themoviedb.org/t/p/w1440_and_h320_multi_faces/5iidzov8DrsSyZdefeo7jBLDNUW.jpg`
   // const imageURL = `https://image.tmdb.org/t/p/original${img}`;
   useEffect(() => {
@@ -19,7 +29,7 @@ const Collection = ({ id }) => {
     fetch(`https://api.themoviedb.org/3/tv/${id}?language=en-US`, options)
       .then((response) => response.json())
       .then((response) => {
-        // console.log(response,"response");
+        console.log(response,"response");
         if (response?.seasons.length > 0 && response?.backdrop_path) {
           setCollection(response);
           setImg(response?.backdrop_path);
@@ -31,7 +41,7 @@ const Collection = ({ id }) => {
       .catch((err) => console.error(err));
   }, []);
   // console.log(`url(https://media.themoviedb.org/t/p/w1440_and_h320_multi_faces${img})`)
-  
+  console.log(collection);
   const style = {
     height: "100%",
     width: "100%",
@@ -49,12 +59,37 @@ const Collection = ({ id }) => {
     <Container style={{padding:"40px"}}>
       <h1 >Part of the {collection?.name}</h1>
       <Container>
-        <Button>View Collection</Button>
+        <Button onClick={toggle}>View all </Button>
       </Container>
     </Container>
     </div>
     </div>
     ):null}
+    <Modal  isOpen={open} toggle={toggle}  >
+        <ModalHeader toggle={toggle}>{collection?.name}</ModalHeader>
+        <ModalBody>
+        <div>
+        {
+          collection?.seasons?.map((item,index)=>{
+            return(
+            <img key={item?.id} style={{height:"200px"}} src={`http://image.tmdb.org/t/p/w500${item?.poster_path}`} alt="poster" />
+
+            )
+          })
+        }
+        {/* <Typography>{`Including ${data?.title}`}</Typography> */}
+        </div>
+        </ModalBody>
+        <ModalFooter>
+          {/* <Button color="primary" onClick={toggle}>
+            Do Something
+          </Button>{' '} */}
+          {' '}
+          <Button color="secondary" onClick={toggle}>
+            Cancel
+          </Button>
+        </ModalFooter>
+      </Modal>
     </>
   );
 };
