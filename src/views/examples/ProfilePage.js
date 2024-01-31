@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-mixed-operators */
 import IndexNavbar from "components/Navbars/IndexNavbar";
 import React, { useEffect } from "react";
 import { Button, Container } from "react-bootstrap";

@@ -1,14 +1,12 @@
-import { Card, CardMedia, Container, IconButton } from "@mui/material";
+import {  IconButton } from "@mui/material";
 import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
-import CustomModal from "components/Body/CustomModal";
-import {useParams,generatePath, useNavigate} from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 
 const Streaming = () => {
   const [data, setData] = useState([]);
-  const [open,setOpen] = useState(false)
   const [newData,setNewData]=useState({})
   // const [name, setName] = useState("")
   // const [you_id,setYou_id] = useState("")
@@ -88,7 +86,7 @@ const Streaming = () => {
     }
     useEffect(()=>{
 
-    },[open,newData])
+    },[newData])
 
   return(<>
     <div className="section" >

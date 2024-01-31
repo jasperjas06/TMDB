@@ -1,13 +1,11 @@
 import {
-    BottomNavigation,
-    BottomNavigationAction,
     Container,
     Typography,
   } from "@mui/material";
   import React from "react";
   import { useNavigate, useParams } from "react-router-dom";
   import "../../../assets/css/New.css";
-  import { Button, Col, Row } from "reactstrap";
+  import {  Col, Row } from "reactstrap";
   import Review from "./Review";
   import YoutubeEmbed from "./Trailer";
   import Keywords from "./Keywords";
@@ -17,7 +15,6 @@ import {
   import Video from "./Video";
   import Poster from "./Poster";
   import MovieFooter from "./MovieFooter";
-  import Footer from "components/Footer/Footer";
   import moment from "moment";
   
   const RecomOverView = () => {

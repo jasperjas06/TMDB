@@ -1,4 +1,4 @@
-import { Card, CardMedia, Container, IconButton } from "@mui/material";
+import {  IconButton } from "@mui/material";
 import gsap from "gsap";
 import React, { useRef, useState } from "react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
@@ -14,14 +14,14 @@ const OnTv = () => {
   let scrl = useRef(null);
   const [scrollX, setscrollX] = useState(0);
   const [scrolEnd, setscrolEnd] = useState(false);
-  const [newdata,setNewData] = useState({})
+  // const [newdata,setNewData] = useState({})
   const navigate = useNavigate();
   const handleOpen = ({item}) =>{
     // console.log(item,"handleOpen");
     if(item){
       // setName(item?.name)
       // setOpen(true)
-      setNewData(item)
+      // setNewData(item)
       navigate(`/view-page/${item?.id}/${item.name}`)
     }
     // name && history.push(generatePath("/view/:name"),{name})

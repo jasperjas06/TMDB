@@ -15,6 +15,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-mixed-operators */
 import { Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";

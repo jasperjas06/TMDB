@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Typography } from "@mui/material";
 import React, { useEffect } from "react";
@@ -29,7 +30,7 @@ const Collection = ({ id }) => {
     fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response,"response");
+        // console.log(response,"response");
         if (response?.belongs_to_collection) {
           setData(response)
           setCollection(response?.belongs_to_collection);
@@ -82,7 +83,7 @@ const Collection = ({ id }) => {
     ):null}
 
     
-        <Modal  isOpen={open} toggle={toggle} fullscreen={true} >
+        <Modal  isOpen={open} toggle={toggle}  >
         <ModalHeader toggle={toggle}>{collection?.name}</ModalHeader>
         <ModalBody>
         <div>

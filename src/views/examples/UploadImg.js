@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-mixed-operators */
 import React, { useEffect, useState } from "react";
 // import { Image } from "cloudinary-react";
@@ -89,7 +91,7 @@ const ImageUpload = () => {
 
         
         if (Object.keys(updatedata).length !== 0) {
-          console.log(updatedata, "updatedata");
+          // console.log(updatedata, "updatedata");
           await axios
             .post(`https://bookmark-server-d30v.onrender.com/api/update?id=${id}`, updatedata)
             .then((res) => {

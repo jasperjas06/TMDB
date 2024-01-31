@@ -15,6 +15,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-mixed-operators */
 import React from "react";
 // react plugin used to create charts
 import { Line } from "react-chartjs-2";
@@ -50,6 +53,8 @@ import bigChartData from "variables/charts.js";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export default function LandingPage() {
   const navigate = useNavigate()
@@ -188,11 +193,12 @@ export default function LandingPage() {
                           </InputGroupAddon>
                           <Input
                             placeholder="Password"
-                            type="text"
+                            type='password'
                             onFocus={(e) => setPasswordFocus(true)}
                             onBlur={(e) => setPasswordFocus(false)}
                             onChange={(e) => setPassword(e.target.value)}
                           />
+                          
                         </InputGroup>
                         <FormGroup  className="text-left">
                         <div>

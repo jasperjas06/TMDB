@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-mixed-operators */
 import { Container, Grid, Typography } from '@mui/material'
 import React from 'react'
 import '../../assets/css/New.css'

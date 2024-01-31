@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import '../.../../../../assets/css/New.css' 
-import { Button } from 'reactstrap';
 const Keywords = ({id}) => {
     // console.log(id,"id");
     const [data,setData] = useState([])

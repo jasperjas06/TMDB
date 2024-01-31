@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-mixed-operators */
 import { Movie, Tv, Visibility } from "@mui/icons-material";
 import {
   BottomNavigation,

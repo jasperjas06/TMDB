@@ -1,5 +1,4 @@
-// import { Button } from "@coreui/coreui";
-import { Typography } from "@mui/material";
+
 import React, { useEffect } from "react";
 import { Button, Container, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 
@@ -29,7 +28,7 @@ const Collection = ({ id }) => {
     fetch(`https://api.themoviedb.org/3/tv/${id}?language=en-US`, options)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response,"response");
+        // console.log(response,"response");
         if (response?.seasons.length > 0 && response?.backdrop_path) {
           setCollection(response);
           setImg(response?.backdrop_path);
@@ -41,7 +40,7 @@ const Collection = ({ id }) => {
       .catch((err) => console.error(err));
   }, []);
   // console.log(`url(https://media.themoviedb.org/t/p/w1440_and_h320_multi_faces${img})`)
-  console.log(collection);
+  // console.log(collection);
   const style = {
     height: "100%",
     width: "100%",

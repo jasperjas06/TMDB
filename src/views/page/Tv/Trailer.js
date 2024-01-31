@@ -1,3 +1,8 @@
+/* eslint-disable array-callback-return */
+
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-mixed-operators */
 import React, { useEffect, useState } from 'react'
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
@@ -58,7 +63,7 @@ const YoutubeEmbed  = ({embedId}) => {
             fetch(`https://api.themoviedb.org/3/tv/${embedId}/videos?language=en-US`, options)
       .then(response => response.json())
       .then(response => {
-        console.log(response.results)
+        // console.log(response.results)
         if(response?.results){
             response?.results.filter((item,index)=>{
                 // console.log(item.name);

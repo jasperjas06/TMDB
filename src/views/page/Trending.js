@@ -1,11 +1,10 @@
 import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { Card, CardMedia, Container, IconButton } from "@mui/material";
+import {  Container, IconButton } from "@mui/material";
 import "../../assets/scss/styles.scss";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
-import AutoPlayer from "components/Body/AutoPlayer";
 import BackG from "components/Body/BackG";
 function Trending(props) {
   const [data, setData] = useState([]);

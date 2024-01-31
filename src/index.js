@@ -17,7 +17,7 @@
 */
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes, Navigate, RouterProvider } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 // import dotenv from "dotenv"
 
 import "assets/css/nucleo-icons.css";
@@ -26,21 +26,10 @@ import "assets/demo/demo.css";
 // import '@coreui/coreui/dist/css/coreui.min.css'
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
-import Index from "views/Index.js";
-import LandingPage from "views/examples/LandingPage.js";
-import RegisterPage from "views/examples/RegisterPage.js";
-import ProfilePage from "views/examples/ProfilePage.js";
-import LoginPage from "views/examples/LoginPage";
-import ExpGengres from "views/examples/Exp_Genres";
-import OverView from "views/page/OverView.js";
-import Search from "views/examples/Search.js";
-import MovieOverview from "views/page/Movie/MovieOver";
-import ScrollToTop from "ScrollToTop";
-import App from "views/App";
 import { router } from "./router";
 // import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 // import "@fortawesome/fontawesome-free/css/all.min.css";
-const token = localStorage.getItem("token");
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // dotenv.config({path:''})
 // eslint-disable-next-line no-lone-blocks

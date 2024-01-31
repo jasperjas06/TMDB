@@ -9,7 +9,7 @@ function App() {
   //  export const AuthContext=React.createContext();
     const [token,setToken] = useState("")
   // const token = localStorage.getItem("token");
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
     useEffect(()=>{
       const getToken =()=>{
         const appToken = localStorage.getItem("tmdb-aut-token");

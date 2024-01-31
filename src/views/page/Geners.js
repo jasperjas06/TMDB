@@ -1,20 +1,10 @@
-import { Card, Container, Typography } from "@mui/material";
+import {  Container } from "@mui/material";
 import React, { useState } from "react";
 import { Button } from "reactstrap";
 import '../../assets/css/New.css'
 const Geners = () => {
   const [genres, setGenres] = useState([]);
-  let output =[]
-  const list = [
-    {name:"Action"},
-    {name:"Adventure"},
-    {name:"Animation"},
-    {name:"Comedy"},
-    {name:"Crime"},
-    {name:"Documentary"},
-    {name:"Drama"},
-    {name:"Family"}   
-]
+
   const options = {
     method: "GET",
     headers: {

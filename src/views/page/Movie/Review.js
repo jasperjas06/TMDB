@@ -1,11 +1,8 @@
 
 import React, { useEffect, useState } from "react";
 import "../../../assets/css/New.css";
-import { Avatar, Card, CardContent, CardHeader } from "@mui/material";
-import ReactReadMoreReadLess from "react-read-more-read-less";
+import {  Card, CardContent, CardHeader } from "@mui/material";
 import ReadMoreAndLess from 'react-read-more-less';
-import ReadMoreReact from "read-more-react/dist/components/ReadMoreReact";
-import { Container } from "react-bootstrap";
 
 const Review = ({ id }) => {
   const [data, setData] = useState({});

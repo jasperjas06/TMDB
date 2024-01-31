@@ -1,11 +1,8 @@
 import { Typography } from '@material-ui/core'
 import {  Container } from '@mui/material'
 import React from 'react'
-import { Button } from 'react-bootstrap'
-import { useNavigate, useParams } from 'react-router-dom'
+import {  useParams } from 'react-router-dom'
 import "../../assets/css/New.css"
-import Video from 'components/Body/Video'
-import Footer from 'components/Footer/Footer'
 import NewNav from 'components/Navbars/NewNav'
 import Review from './Tv/Review'
 
@@ -15,7 +12,7 @@ const OverView = () => {
     const [img, setImg] = React.useState("")
     const [poster,setPoster] = React.useState("")
     const [cast,setCast] = React.useState([])
-    const navigate = useNavigate()
+    
     const options = {
         method: "GET",
         headers: {
