@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 /*!
 
 =========================================================
@@ -43,17 +45,20 @@ import AuthContext from "views/Auth";
 export default function IndexNavbar({profile}) {
   // const [token,setToken] = useContext(AuthContext)
   const [profileimg,setProfileimg] = useState("")
+  const [decoded,setDecoded] = useState({})
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
   const navigate = useNavigate();
-  let token = JSON.stringify(localStorage.getItem("tmdb-aut-token"));
+  let token = JSON.stringify(localStorage.getItem("tmdb-auth-token"));
   // console.log(token);
-  const decoded = jwtDecode(token)
   React.useEffect(() => {
+    if(token !== null){
+      setDecoded(jwtDecode(token))
+    }
     const getProfile = async () => {
       try {
-        await axios.get(`https://bookmark-server-d30v.onrender.com/api/getuser?id=${decoded?.id}`)
+        await axios.get(`https://ill-rose-fly-hem.cyclic.app/api/getuser?id=${decoded?.id}`)
       .then((res)=>{
         // console.log(res.data.data);
         if(res.data.data){
@@ -74,7 +79,7 @@ export default function IndexNavbar({profile}) {
     return function cleanup() {
       window.removeEventListener("scroll", changeColor);
     };
-  }, []);
+  }, [profileimg, decoded]);
   const logout =()=>{
     localStorage.clear()
     // setToken("")
@@ -181,8 +186,9 @@ export default function IndexNavbar({profile}) {
             <img style={{height:"20px", width:"20px"}} src={require("assets/img/logout.png")} alt="logout"/>
           {/* <span style={{color:"white",marginRight:"20px"}}>Logout</span> */}
           </NavLink>}
-            
+            <br/>
           </Nav>
+          <br/>
           </div>
         </Collapse>
       </Container>

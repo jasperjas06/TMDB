@@ -71,16 +71,19 @@ export default function LandingPage() {
       if( email === "" || password === ""){
         toast.error("Please fill all the fields")
       }
+      // else if(email !== "!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2}$/"){
+      //   toast.error("Please enter valid email")
+      // }
       else{
         // navigate('/home-page')
         // console.log(email,password);
-        await axios.post("https://bookmark-server-d30v.onrender.com/api/login",{username:email,password:password})
+        await axios.post("https://ill-rose-fly-hem.cyclic.app/api/login",{username:email,password:password})
         .then((res)=>{
           // console.log(res,"res");
           if(res?.data?.message === "login successful"){
             toast.success(res.data.message)
-            localStorage.setItem("tmdb-aut-token",JSON.stringify(res?.data?.token))
-            if(JSON.stringify(localStorage.getItem("tmdb-aut-token"))){
+            localStorage.setItem("tmdb-auth-token",JSON.stringify(res?.data?.token))
+            if(JSON.stringify(localStorage.getItem("tmdb-auth-token"))){
               navigate('/home-page')
             }
           }
@@ -107,7 +110,7 @@ export default function LandingPage() {
       {/* <IndexNavbar /> */}
       <div className="wrapper">
         <div className="page-header">
-          <img
+          {/* <img
             alt="..."
             className="path"
             src={require("assets/img/blob.png")}
@@ -116,7 +119,7 @@ export default function LandingPage() {
             alt="..."
             className="path2"
             src={require("assets/img/path2.png")}
-          />
+          /> */}
           <img
             alt="..."
             className="shapes triangle"

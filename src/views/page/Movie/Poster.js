@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { Col, Row } from "reactstrap";
 
@@ -29,7 +31,7 @@ const Poster = ({ id }) => {
   useEffect(() => {
     getPoster();
     // console.log(data,"data");
-  }, []);
+  }, [id]);
   return (
   <div>
   <Row>

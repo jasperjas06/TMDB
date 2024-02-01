@@ -18,6 +18,7 @@ import Collection from "./Collection";
 import Video from "./Video";
 import Poster from "./Poster";
 import moment from "moment";
+import TvFooter from "./TVFooter"
 
 const TvOverView = () => {
   // const key = setLocalStorage.getItem("key")
@@ -78,6 +79,7 @@ const TvOverView = () => {
     }
   }, [data]);
   return (
+    <>
     <div className="section section-basic">
       <NewNav />
       <div>
@@ -90,12 +92,14 @@ const TvOverView = () => {
                 </Col>
                 <Col md={8}>
                   <div style={{ padding: "10px" }}>
+                  <a href={data?.homepage}>
                     <h2
                       className="H28"
                       style={{ fontWeight: "700", marginTop: "4rem" }}
                     >
-                      {name} <br />
+                      {data?.name} <br />
                     </h2>
+                    </a>
                     <div>
                       <div style={{ display: "flex" }}>
                         <Typography>{`(${year})`}</Typography>
@@ -120,6 +124,7 @@ const TvOverView = () => {
                           </div>
                         </div>
                       </div>
+                        {/* <a href={data?.homepage}><span>Home page</span></a> */}
                     </div>
                     <div>
 
@@ -140,7 +145,7 @@ const TvOverView = () => {
         <div style={{ backgroundColor: "whitesmoke", marginTop: "0px" }}>
           <Container>
             <br />
-            <h2 className="" style={{ color: "black", fontWeight: "700" }}>
+            <h2 className="" id="topcast" style={{ color: "black", fontWeight: "700" }}>
               To Billed Cast
             </h2>
             <center></center>
@@ -193,7 +198,7 @@ const TvOverView = () => {
 
           <Container>
             <br />
-            <h2 className="" style={{ color: "black", fontWeight: "700" }}>
+            <h2 className=""id="trailer" style={{ color: "black", fontWeight: "700" }}>
               Official Trailer
             </h2>
             <Container>
@@ -217,7 +222,7 @@ const TvOverView = () => {
           </Container>
           <br />
           <Container>
-            <h2 className="" style={{ color: "black", fontWeight: "700" }}>
+            <h2 className="" id="recommen" style={{ color: "black", fontWeight: "700" }}>
               Recommendations
             </h2>
             <Recommendations id={id} name={movieName} />
@@ -231,7 +236,7 @@ const TvOverView = () => {
           </Container>
           <br />
           <Container>
-            <h2 className="" style={{ color: "black", fontWeight: "700" }}>
+            <h2 className="" id="media" style={{ color: "black", fontWeight: "700" }}>
               Media
             </h2>
             {/* <Container>
@@ -265,7 +270,27 @@ const TvOverView = () => {
         </div>
         <br />
       </div>
+      <Container className="production_company">
+      <center>
+      <h2 className="" id="media" style={{ color: "white", fontWeight: "700" }}>
+              Production Companies
+            </h2>
+      </center>
+      <br/>
+      <ul>
+        {data.production_companies?.map((item,index)=>{
+          return(
+            <li key={index}>
+              <img src={`http://image.tmdb.org/t/p/w500${item.logo_path}`} alt={item?.name}/>
+            </li>
+          )
+        })}
+        </ul>
+        
+      </Container>
     </div>
+      <TvFooter />
+    </>
   );
 };
 

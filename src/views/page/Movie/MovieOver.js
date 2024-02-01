@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import {
   Container,
   Typography,
@@ -90,12 +92,14 @@ const MovieOverview = () => {
                 </Col>
                 <Col md={8}>
                   <div style={{ padding: "10px" }}>
+                  <a href={data?.homepage}>
                     <h2
                       className="H28"
                       style={{ fontWeight: "700", marginTop: "4rem" }}
                     >
-                      {name} <br />
+                      {data?.title} <br />
                     </h2>
+                    </a>
                     <div>
                       <div style={{ display: "flex" }}>
                         <Typography>{`(${year})`}</Typography>
@@ -270,6 +274,24 @@ const MovieOverview = () => {
         <br />
         {/* white screen end */}
       </div>
+      <Container className="production_company">
+      <center>
+      <h2 className="" id="media" style={{ color: "white", fontWeight: "700" }}>
+              Production Companies
+            </h2>
+      </center>
+      <br/>
+      <ul>
+        {data.production_companies?.map((item,index)=>{
+          return(
+            <li key={index}>
+              <img src={`http://image.tmdb.org/t/p/w500${item.logo_path}`} alt={item?.name}/>
+            </li>
+          )
+        })}
+        </ul>
+        
+      </Container>
     </div>
       <MovieFooter />
       </>

@@ -48,7 +48,7 @@ const Collection = ({ id }) => {
   const style = {
     height: "100%",
     width: "100%",
-    backgroundImage: `https://image.tmdb.org/t/p/original${data?.backdrop_path}`,
+    backgroundImage: `url(https://image.tmdb.org/t/p/w1440_and_h320_multi_faces${data?.belongs_to_collection?.backdrop_path})`,
     backgroundSize: "cover",
     backgroundPosition: "50% 50%",
     borderRadius: "15px",

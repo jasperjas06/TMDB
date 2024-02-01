@@ -69,8 +69,8 @@ const ImageUpload = () => {
   };
   const update = async () => {
     try {
-      let token = JSON.stringify(localStorage.getItem("tmdb-aut-token"));
-      if (token) {
+      let token = JSON.stringify(localStorage.getItem("tmdb-auth-token"));
+      if (token !== null) {
         let decode = jwtDecode(token);
         let id = decode?.id;
         let updatedata = {};
@@ -93,7 +93,7 @@ const ImageUpload = () => {
         if (Object.keys(updatedata).length !== 0) {
           // console.log(updatedata, "updatedata");
           await axios
-            .post(`https://bookmark-server-d30v.onrender.com/api/update?id=${id}`, updatedata)
+            .post(`https://ill-rose-fly-hem.cyclic.app/api/update?id=${id}`, updatedata)
             .then((res) => {
               if(res?.data){
               toast.success("updated successfully");
@@ -116,11 +116,11 @@ const ImageUpload = () => {
       handleImageChange();
     }
 
-    let token = JSON.stringify(localStorage.getItem("tmdb-aut-token"));
-    if (token) {
+    let token = JSON.stringify(localStorage.getItem("tmdb-auth-token"));
+    if (token !== null) {
       let decode = jwtDecode(token);
       axios
-        .get(`https://bookmark-server-d30v.onrender.com/api/getuser?id=${decode?.id}`)
+        .get(`https://ill-rose-fly-hem.cyclic.app/api/getuser?id=${decode?.id}`)
         .then((res) => {
           if (res?.data?.data) {
             setData(res?.data?.data);
@@ -147,6 +147,7 @@ const ImageUpload = () => {
           <header className="border-dashed border-2 border-gray-400 py-12 flex flex-col justify-center items-center">
             <div className="flex justify-center items-center mt-5 mx-3 max-w-xs">
               {data && (
+                
                 <img
                   src={preview != null ? preview : profile}
                   alt="preview"

@@ -545,6 +545,12 @@ body, button {
     white-space: nowrap;
     padding-bottom: 10px;
 }
+@media screen and (max-width: 984px) {
+  .movie_media_vid {
+    display: none;
+  }
+  
+}
 .recommendations {
   /* max-height: 50vh; */
   /* overflow: hidden;
@@ -670,4 +676,23 @@ body, button {
   padding: 20px;
   margin-top: 30px;
   margin-left: 50px;
+}
+
+.production_company ul {
+  width: 100%;
+  display: flex;
+  /* flex-direction: row; */
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+  margin-top: 25px;
+}
+.production_company ul li {
+  margin-right: 5px;
+    margin-bottom: 10px;
+    max-width: 200px;
+    /* line-height: 24px;
+    font-size: .9em; */
+    box-sizing: border-box;
+    white-space: nowrap
 }

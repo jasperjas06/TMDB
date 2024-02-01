@@ -1,3 +1,5 @@
+/* eslint-disable no-lone-blocks */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -44,7 +46,7 @@ const Recommendations = ({id,name}) => {
       {data?.map((item,index)=>{
         return(
           <>
-                <img key={index} title={item.title} src={`http://image.tmdb.org/t/p/w500${item.backdrop_path}`} className='rec_img' alt={item.title} onClick={()=>{navigate(`/recommendation/${item?.id}/${item?.title}`)}} />
+                <img key={item.id} title={item.title} src={`http://image.tmdb.org/t/p/w500${item.backdrop_path}`} className='rec_img' alt={item.title} onClick={()=>{navigate(`/recommendation/${item?.id}/${item?.title}`)}} />
                 {/* <p>{item.title}</p> */}
                 </>
             )

@@ -32,35 +32,22 @@ const Video = ({ id }) => {
     // console.log(data,"vid");
   }, [id]);
   return (
-    <>
-      {data.length > 0 ? (
-        <div className="scroller">
-          <div className="movievideos">
-            {data?.map((item, index) => {
-              return (
-                <Col md={6} key={item?.id}>
-                  <LiteYouTubeEmbed id={item?.key} />
-                </Col>
-              );
-            })}
-          </div>
-        </div>
-      ) : (
-        <h1 style={{ color: "black" }}>No Video aviable</h1>
-      )}
-    </>
+    <div className="movie_media_vid">
+    <div className="scroller">
+    <div className="movievideos">
+      {data?.map((item, index) => {
+        return (
+            <Col md={6} key={item?.id}>
+            <LiteYouTubeEmbed id={item?.key}  />
+            </Col>
+          
+          
+        );
+      })}
+    </div>
+    </div>
+    </div>
   );
 };
-{
-  /* <div key={item?.id} className="videoSize"> */
-}
-{
-  /* <LiteYouTubeEmbed id={item?.key} aspectWidth={100} aspectHeight={40} style={{width: "533px", height: "300px"}}/> */
-}
-{
-  /* </div> */
-}
-{
-  /* <YoutubeEmbed youtubeId={item?.key}   /> */
-}
+
 export default Video;

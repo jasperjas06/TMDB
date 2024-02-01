@@ -13,7 +13,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const [data,setData] = React.useState({});
   const getUser = async({id}) =>{
-    await axios.get(`https://bookmark-server-d30v.onrender.com/api/getuser?id=${id}`)
+    await axios.get(`https://ill-rose-fly-hem.cyclic.app/api/getuser?id=${id}`)
     .then((res)=>{
       // console.log(res?.data?.data); 
       if(res.data.data){
@@ -25,10 +25,11 @@ const ProfilePage = () => {
     })
   }
   useEffect(()=>{
-    const token = jwtDecode(JSON.stringify(localStorage.getItem("tmdb-aut-token")))
-    if(token){
+    const token = JSON.stringify(localStorage.getItem("tmdb-auth-token"));
+    if(token !== null){
+      let decoded = jwtDecode(token)
       // console.log(token);
-      let id = token?.id
+      let id = decoded?.id
       getUser({id});
     }
   },[])
@@ -48,9 +49,13 @@ const ProfilePage = () => {
         <br/>
         <MDBCard style={{ borderRadius: '15px' }}>
               <MDBCardBody className="text-center">
-                <div className="mt-3 mb-4">
+                <div className="mt-3 mb-4" >
+                <center>
+                <div style={{ width: '100px', height:"100px" }}>
                   <MDBCardImage src={data?.profileimg ? data?.profileimg : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"}
-                    className="rounded-circle" fluid style={{ width: '100px', height:"100px" }} />
+                    className="rounded-circle" fluid  />
+                </div>
+                </center>
                 </div>
                 <MDBTypography tag="h4">{data?.username}</MDBTypography>
                 <MDBCardText className="text-muted mb-4">

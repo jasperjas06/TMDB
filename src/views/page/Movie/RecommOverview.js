@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import {
     Container,
     Typography,
@@ -269,6 +271,24 @@ import {
           <br />
           {/* white screen end */}
         </div>
+        <Container className="production_company">
+      <center>
+      <h2 className="" id="media" style={{ color: "white", fontWeight: "700" }}>
+              Production Companies
+            </h2>
+      </center>
+      <br/>
+      <ul>
+        {data.production_companies?.map((item,index)=>{
+          return(
+            <li key={index}>
+              <img src={`http://image.tmdb.org/t/p/w500${item.logo_path}`} alt={item?.name}/>
+            </li>
+          )
+        })}
+        </ul>
+        
+      </Container>
       </div>
         <MovieFooter />
         </>

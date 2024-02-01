@@ -15,10 +15,19 @@ const MovieFooter = ({data}) => {
   return (
     <footer className="bg-body-tertiary text-center text-lg-start">
   
-  <div className="text-center p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.05)"}}>
-    © 2024 Copyright:<i>Jasper P</i>
-    {/* <a className="text-body" href="https://mdbootstrap.com/">MDBootstrap.com</a> */}
-  </div>
+  <div >
+          © {new Date().getFullYear()}, Designed &{" "}
+          
+           Coded by{" "}
+          <a
+            href="https://personal-portfolio-ruddy-two.vercel.app/index"
+            target="_blank" rel="noreferrer"
+            
+          >
+            Jasper P
+          </a>
+          .
+        </div>
   
 </footer>
   )

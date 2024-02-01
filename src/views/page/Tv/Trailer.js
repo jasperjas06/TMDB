@@ -76,7 +76,7 @@ const YoutubeEmbed  = ({embedId}) => {
         // setKey(response.results[0].key)
       })
       .catch(err => console.error(err));
-        },[])
+        },[embedId])
     return(
         <div>
     <LiteYouTubeEmbed 
