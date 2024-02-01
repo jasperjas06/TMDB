@@ -77,7 +77,7 @@ export default function LandingPage() {
       else{
         // navigate('/home-page')
         // console.log(email,password);
-        await axios.post("https://ill-rose-fly-hem.cyclic.app/api/login",{username:email,password:password})
+        await axios.post("https://bookmark-server-d30v.onrender.com/api/login",{username:email,password:password})
         .then((res)=>{
           // console.log(res,"res");
           if(res?.data?.message === "login successful"){

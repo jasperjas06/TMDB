@@ -14,7 +14,7 @@ const ProfilePage = () => {
   const [data,setData] = React.useState({});
   const getUser = async() =>{
     const token = jwtDecode(JSON.stringify(localStorage.getItem("tmdb-auth-token")))
-    await axios.get(`https://ill-rose-fly-hem.cyclic.app/api/getuser?id=${token?.id}`)
+    await axios.get(`https://bookmark-server-d30v.onrender.com/api/getuser?id=${token?.id}`)
     .then((res)=>{
       // console.log(res?.data?.data); 
       if(res.data.data){

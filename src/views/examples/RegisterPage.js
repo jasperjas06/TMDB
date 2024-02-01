@@ -66,7 +66,7 @@ export default function RegisterPage() {
       password:password
     }
       const response = await axios.post(
-        "https://ill-rose-fly-hem.cyclic.app/api/create",{name,email,password}
+        "https://bookmark-server-d30v.onrender.com/api/create",{name,email,password}
       ).then((response)=>{
         if(response.status === 200){
           setSuccessMessage(response.data.message)

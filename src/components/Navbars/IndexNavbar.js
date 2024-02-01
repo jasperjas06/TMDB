@@ -58,7 +58,7 @@ export default function IndexNavbar({profile}) {
       try {
         let token = JSON.stringify(localStorage.getItem("tmdb-auth-token"));
         // setDecoded(jwtDecode(token))
-        await axios.get(`https://ill-rose-fly-hem.cyclic.app/api/getuser?id=${jwtDecode(token)?.id}`)
+        await axios.get(`https://bookmark-server-d30v.onrender.com/api/getuser?id=${jwtDecode(token)?.id}`)
       .then((res)=>{
         // console.log(res.data.data);
         if(res.data.data){

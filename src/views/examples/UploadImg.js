@@ -93,7 +93,7 @@ const ImageUpload = () => {
         if (Object.keys(updatedata).length !== 0) {
           // console.log(updatedata, "updatedata");
           await axios
-            .post(`https://ill-rose-fly-hem.cyclic.app/api/update?id=${id}`, updatedata)
+            .post(`https://bookmark-server-d30v.onrender.com/api/update?id=${id}`, updatedata)
             .then((res) => {
               if(res?.data){
               toast.success("updated successfully");
@@ -120,7 +120,7 @@ const ImageUpload = () => {
     if (token !== null) {
       let decode = jwtDecode(token);
       axios
-        .get(`https://ill-rose-fly-hem.cyclic.app/api/getuser?id=${decode?.id}`)
+        .get(`https://bookmark-server-d30v.onrender.com/api/getuser?id=${decode?.id}`)
         .then((res) => {
           if (res?.data?.data) {
             setData(res?.data?.data);
