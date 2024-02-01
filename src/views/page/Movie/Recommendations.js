@@ -61,6 +61,3 @@ const Recommendations = ({id,name}) => {
 }
 
 export default Recommendations
- {/* <div key={index}> */}
-                {/* <h3>{item.title}</h3> */}
-            {/* </div> */}

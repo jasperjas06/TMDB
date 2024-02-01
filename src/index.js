@@ -26,18 +26,17 @@ import "assets/demo/demo.css";
 // import '@coreui/coreui/dist/css/coreui.min.css'
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
-import { authrouter, router } from "./router";
+import { router } from "./router";
 // import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 // import "@fortawesome/fontawesome-free/css/all.min.css";
-let token = JSON.stringify(localStorage.getItem("tmdb-auth-token"));
-console.log(token, "index");
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 // dotenv.config({path:''})
 // eslint-disable-next-line no-lone-blocks
 // {console.log(process.env.REACT_APP_KEY,"index")}
 root.render(
-  <RouterProvider router={token === null ? router : authrouter} />
+  <RouterProvider router={router} />
   // <BrowserRouter>
   // <ScrollToTop/>
   //   <Routes>

@@ -17,29 +17,22 @@ export const router = createBrowserRouter([
     path: "/",
     element: <App />,
   },
+  // {
+  //     path : '*',
+  //     element: <App to/>
+
+  // },
   {
     path: "register-page",
     element: <RegisterPage />,
   },
   {
-    path: "/landing-page",
-    element: <LandingPage />,
-  },
-  // {
-  //   path: "/home-page",
-  //   element: <Index />,
-  // },
-  
-]);
-
-export const authrouter = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
     path: "/home-page",
     element: <Index />,
+  },
+  {
+    path: "/landing-page",
+    element: <LandingPage />,
   },
   {
     path: "/profile-page",
@@ -64,4 +57,4 @@ export const authrouter = createBrowserRouter([
   },
   { path: "/edit-profile", element: <EditProfile /> },
   { path: "/person", element: <Person /> }
-])
+]);
