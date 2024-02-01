@@ -45,20 +45,20 @@ import AuthContext from "views/Auth";
 export default function IndexNavbar({profile}) {
   // const [token,setToken] = useContext(AuthContext)
   const [profileimg,setProfileimg] = useState("")
-  const [decoded,setDecoded] = useState({})
+  const [decoded,setDecoded] = useState(null)
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
   const navigate = useNavigate();
-  let token = JSON.stringify(localStorage.getItem("tmdb-auth-token"));
   // console.log(token);
+  
   React.useEffect(() => {
-    if(token !== null){
-      setDecoded(jwtDecode(token))
-    }
+    
     const getProfile = async () => {
       try {
-        await axios.get(`https://ill-rose-fly-hem.cyclic.app/api/getuser?id=${decoded?.id}`)
+        let token = JSON.stringify(localStorage.getItem("tmdb-auth-token"));
+        // setDecoded(jwtDecode(token))
+        await axios.get(`https://ill-rose-fly-hem.cyclic.app/api/getuser?id=${jwtDecode(token)?.id}`)
       .then((res)=>{
         // console.log(res.data.data);
         if(res.data.data){
@@ -72,14 +72,13 @@ export default function IndexNavbar({profile}) {
       }
       
     }
-    if(decoded){
-      getProfile()
-    }
+    getProfile()
     window.addEventListener("scroll", changeColor);
     return function cleanup() {
       window.removeEventListener("scroll", changeColor);
     };
-  }, [profileimg, decoded]);
+    
+  }, [profileimg]);
   const logout =()=>{
     localStorage.clear()
     // setToken("")
